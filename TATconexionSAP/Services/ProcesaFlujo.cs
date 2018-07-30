@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using TATconexionSAP;
-
+using TATconexionSAP.Entities;
 
 namespace TAT001.Services
 {
@@ -342,8 +342,9 @@ namespace TAT001.Services
                             {
                                 DOCUMENTO d = db.DOCUMENTOes.Find(actual.NUM_DOC);
 
-                                ArchivoContable sa = new ArchivoContable();
-                                string file = sa.generarArchivo(d.NUM_DOC, 0);
+                                //ArchivoContable sa = new ArchivoContable();
+                                //string file = sa.generarArchivo(d.NUM_DOC, 0);
+                                string file = "";
 
                                 if (file == "")
                                 {

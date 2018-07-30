@@ -8,6 +8,15 @@
     <Property Name="DESCCRIPCION" Type="nvarchar" MaxLength="50" />
     <Property Name="TIPO" Type="nchar" MaxLength="1" Nullable="false" />
   </EntityType>
+  <EntityType Name="APPSETTING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" />
+    <Property Name="VALUE" Type="nvarchar" MaxLength="255" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="CAMPOS">
     <Key>
       <PropertyRef Name="PAGINA_ID" />
@@ -113,6 +122,24 @@
     <Property Name="LUGARFECHX" Type="bit" />
     <Property Name="MONTO" Type="nvarchar" MaxLength="100" />
     <Property Name="MONEDA" Type="nchar" MaxLength="10" />
+    <Property Name="PAYERNOM" Type="nvarchar" MaxLength="100" />
+    <Property Name="PAYERNOMX" Type="bit" />
+    <Property Name="COMENTARIO" Type="nvarchar" MaxLength="255" />
+    <Property Name="COMENTARIOX" Type="bit" />
+    <Property Name="COMPROMISOK" Type="nvarchar" MaxLength="250" />
+    <Property Name="COMPROMISOKX" Type="bit" />
+    <Property Name="COMPROMISOC" Type="nvarchar" MaxLength="250" />
+    <Property Name="COMPROMISOCX" Type="bit" />
+    <Property Name="SECOND_TABX" Type="bit" />
+    <Property Name="COSTO_UNX" Type="bit" />
+    <Property Name="APOYOX" Type="bit" />
+    <Property Name="APOYOPX" Type="bit" />
+    <Property Name="COSTOAPX" Type="bit" />
+    <Property Name="PRECIOX" Type="bit" />
+    <Property Name="APOYO_ESTX" Type="bit" />
+    <Property Name="APOYO_REAX" Type="bit" />
+    <Property Name="VOLUMEN_ESTX" Type="bit" />
+    <Property Name="VOLUMEN_REAX" Type="bit" />
   </EntityType>
   <EntityType Name="CATEGORIA">
     <Key>
@@ -237,7 +264,7 @@
     <Property Name="PAIS" Type="nchar" MaxLength="2" />
     <Property Name="NOTA" Type="nchar" MaxLength="50" />
     <Property Name="CORRESPONDENCIA" Type="nchar" MaxLength="50" />
-    <Property Name="CALC_TAXT" Type="nchar" MaxLength="1" />
+    <Property Name="CALC_TAXT" Type="bit" />
     <Property Name="RELACION" Type="int" />
     <Property Name="RETENCION" Type="nchar" MaxLength="1" />
     <Property Name="DESCRI_CONFIG" Type="nvarchar" MaxLength="30" />
@@ -279,6 +306,8 @@
     <Property Name="ASSIGNACION" Type="bit" />
     <Property Name="QUANTITY" Type="int" />
     <Property Name="BASE_UNIT" Type="nchar" MaxLength="3" />
+    <Property Name="MATERIALGP" Type="nvarchar" MaxLength="30" />
+    <Property Name="TAXCODEGP" Type="nchar" MaxLength="2" />
   </EntityType>
   <EntityType Name="CONSOPORTE">
     <Key>
@@ -359,6 +388,31 @@
     <Property Name="ACTIVO" Type="bit" />
     <Property Name="USUARIOA" Type="nvarchar" MaxLength="16" />
     <Property Name="USUARIOC" Type="nvarchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="DET_AGENTEC">
+    <Key>
+      <PropertyRef Name="USUARIOC_ID" />
+      <PropertyRef Name="PAIS_ID" />
+      <PropertyRef Name="VKORG" />
+      <PropertyRef Name="VTWEG" />
+      <PropertyRef Name="SPART" />
+      <PropertyRef Name="KUNNR" />
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="PAIS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="VKORG" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="VTWEG" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="SPART" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="KUNNR" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="POS" Type="int" Nullable="false" />
+    <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="MONTO" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="PRESUPUESTO" Type="bit" Nullable="false" />
+    <Property Name="MAIL" Type="bit" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="DET_AGENTEH">
     <Key>
@@ -467,6 +521,26 @@
     <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="DET_TAXEOC">
+    <Key>
+      <PropertyRef Name="USUARIOC_ID" />
+      <PropertyRef Name="PAIS_ID" />
+      <PropertyRef Name="VKORG" />
+      <PropertyRef Name="VTWEG" />
+      <PropertyRef Name="SPART" />
+      <PropertyRef Name="KUNNR" />
+      <PropertyRef Name="VERSION" />
+    </Key>
+    <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="PAIS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="VKORG" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="VTWEG" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="SPART" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="KUNNR" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="DOCUMENTBORR">
     <Key>
       <PropertyRef Name="USUARIOC_ID" />
@@ -478,7 +552,7 @@
     <Property Name="PAIS_ID" Type="nchar" MaxLength="2" />
     <Property Name="ESTADO" Type="nvarchar" MaxLength="50" />
     <Property Name="CIUDAD" Type="nvarchar" MaxLength="50" />
-    <Property Name="PERIODO" Type="nchar" MaxLength="2" />
+    <Property Name="PERIODO" Type="int" />
     <Property Name="EJERCICIO" Type="nchar" MaxLength="4" />
     <Property Name="TIPO_TECNICO" Type="nchar" MaxLength="1" />
     <Property Name="TIPO_RECURRENTE" Type="nchar" MaxLength="1" />
@@ -535,6 +609,10 @@
     <Property Name="VKORG" Type="nvarchar" MaxLength="4" />
     <Property Name="VTWEG" Type="nchar" MaxLength="2" />
     <Property Name="SPART" Type="nchar" MaxLength="2" />
+    <Property Name="TIPO_TECNICO2" Type="nchar" MaxLength="1" />
+    <Property Name="MONEDA_DIS" Type="nchar" MaxLength="3" />
+    <Property Name="PORC_APOYO" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="LIGADA" Type="nchar" MaxLength="1" />
   </EntityType>
   <EntityType Name="DOCUMENTO">
     <Key>
@@ -553,6 +631,7 @@
     <Property Name="TIPO_RECURRENTE" Type="nchar" MaxLength="1" />
     <Property Name="CANTIDAD_EV" Type="decimal" Precision="3" Scale="0" />
     <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="USUARIOD_ID" Type="nvarchar" MaxLength="16" />
     <Property Name="FECHAD" Type="datetime" />
     <Property Name="FECHAC" Type="datetime" />
     <Property Name="HORAC" Type="time" Precision="7" />
@@ -609,6 +688,8 @@
     <Property Name="GALL_ID" Type="nvarchar" MaxLength="5" />
     <Property Name="CONCEPTO_ID" Type="int" />
     <Property Name="DOCUMENTO_SAP" Type="nvarchar" MaxLength="10" />
+    <Property Name="PORC_APOYO" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="LIGADA" Type="bit" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -641,6 +722,8 @@
     <Property Name="EJERCICIOK" Type="nchar" MaxLength="4" />
     <Property Name="BILL_DOC" Type="nchar" MaxLength="10" />
     <Property Name="BELNR" Type="nchar" MaxLength="10" />
+    <Property Name="IMPORTE_FAC" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="PAYER" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="DOCUMENTOM">
     <Key>
@@ -657,6 +740,7 @@
     <Property Name="APOYO_REAL" Type="decimal" Precision="13" Scale="5" />
     <Property Name="VIGENCIA_DE" Type="date" />
     <Property Name="VIGENCIA_A" Type="date" />
+    <Property Name="VALORH" Type="decimal" Precision="13" Scale="5" />
   </EntityType>
   <EntityType Name="DOCUMENTON">
     <Key>
@@ -718,6 +802,7 @@
     <Property Name="ESTATUS" Type="nchar" MaxLength="1" />
     <Property Name="PORC" Type="decimal" Precision="13" Scale="5" />
     <Property Name="DOC_REF" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="FECHAV" Type="date" />
   </EntityType>
   <EntityType Name="DOCUMENTOSAP">
     <Key>
@@ -757,6 +842,9 @@
     <Property Name="EJERCICIOK" Type="bit" Nullable="false" />
     <Property Name="BILL_DOC" Type="bit" Nullable="false" />
     <Property Name="BELNR" Type="bit" Nullable="false" />
+    <Property Name="IMPORTE_FAC" Type="bit" Nullable="false" />
+    <Property Name="PAYER" Type="bit" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>
@@ -863,6 +951,8 @@
     <Property Name="ID" Type="nchar" MaxLength="3" Nullable="false" />
     <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
+    <Property Name="EXCLUIR" Type="bit" Nullable="false" />
+    <Property Name="UNICA" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="MATERIALGPT">
     <Key>
@@ -933,6 +1023,9 @@
     <Property Name="IMAGE" Type="nchar" MaxLength="6" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
     <Property Name="SOCIEDAD_ID" Type="nchar" MaxLength="4" />
+    <Property Name="DECIMAL" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="MILES" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="BACKORDER" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="PERIODO">
     <Key>
@@ -1062,7 +1155,7 @@
     <Property Name="REGION" Type="nvarchar" MaxLength="15" />
     <Property Name="MONEDA" Type="nchar" MaxLength="2" />
     <Property Name="MATERIAL" Type="nvarchar" MaxLength="18" />
-    <Property Name="BANNER" Type="nvarchar" MaxLength="8" />
+    <Property Name="BANNER" Type="nvarchar" MaxLength="10" />
     <Property Name="ADVER" Type="float" />
     <Property Name="CONPR" Type="float" />
     <Property Name="CSHDC" Type="float" />
@@ -1327,44 +1420,6 @@
     <Property Name="TEXTOS" Type="nvarchar" MaxLength="255" />
     <Property Name="ACTIVO" Type="bit" />
   </EntityType>
-  <EntityType Name="TEXTOCARTAF">
-    <Key>
-      <PropertyRef Name="SPRAS_ID" />
-    </Key>
-    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="E_MAIL" Type="nvarchar" MaxLength="250" />
-    <Property Name="ESTIMADO" Type="nvarchar" MaxLength="15" />
-    <Property Name="CONTROL" Type="nvarchar" MaxLength="50" />
-    <Property Name="FOLIO" Type="nvarchar" MaxLength="20" />
-    <Property Name="PAYER" Type="nvarchar" MaxLength="20" />
-    <Property Name="MONTO" Type="nvarchar" MaxLength="50" />
-    <Property Name="MARCA_AGUA" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="TEXTOCARTAV">
-    <Key>
-      <PropertyRef Name="SPRAS_ID" />
-    </Key>
-    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="E_MAIL" Type="nvarchar" MaxLength="250" />
-    <Property Name="ESTIMADO" Type="nvarchar" MaxLength="30" />
-    <Property Name="CONTROL" Type="nvarchar" MaxLength="50" />
-    <Property Name="DE" Type="nvarchar" MaxLength="15" />
-    <Property Name="A" Type="nvarchar" MaxLength="15" />
-    <Property Name="MATERIAL" Type="nvarchar" MaxLength="50" />
-    <Property Name="CATEGORIA" Type="nvarchar" MaxLength="50" />
-    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
-    <Property Name="COSTOU" Type="nvarchar" MaxLength="50" />
-    <Property Name="APOYOP" Type="nvarchar" MaxLength="50" />
-    <Property Name="APOYOPP" Type="nvarchar" MaxLength="50" />
-    <Property Name="COSTOA" Type="nvarchar" MaxLength="50" />
-    <Property Name="PRECIOSU" Type="nvarchar" MaxLength="50" />
-    <Property Name="FOLIO" Type="nvarchar" MaxLength="20" />
-    <Property Name="PAYER" Type="nvarchar" MaxLength="20" />
-    <Property Name="MONTO" Type="nvarchar" MaxLength="50" />
-    <Property Name="MARCA_AGUA" Type="nvarchar" MaxLength="50" />
-    <Property Name="APOYOEST" Type="nvarchar" MaxLength="50" />
-    <Property Name="APOYOREA" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="TRETENCION">
     <Key>
       <PropertyRef Name="ID" />
@@ -1430,6 +1485,12 @@
     <Property Name="RANGO_ID" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
     <Property Name="FACTURA" Type="bit" Nullable="false" />
+    <Property Name="PADRE" Type="bit" Nullable="false" />
+    <Property Name="ADICIONA" Type="bit" Nullable="false" />
+    <Property Name="TSOLM" Type="nvarchar" MaxLength="10" />
+    <Property Name="TSOLC" Type="nvarchar" MaxLength="10" />
+    <Property Name="TRECU" Type="nchar" MaxLength="1" />
+    <Property Name="NEGO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>
@@ -2166,6 +2227,60 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DET_AGENTEC_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="DET_AGENTEC" Type="Self.DET_AGENTEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="VKORG" />
+        <PropertyRef Name="VTWEG" />
+        <PropertyRef Name="SPART" />
+        <PropertyRef Name="KUNNR" />
+      </Principal>
+      <Dependent Role="DET_AGENTEC">
+        <PropertyRef Name="VKORG" />
+        <PropertyRef Name="VTWEG" />
+        <PropertyRef Name="SPART" />
+        <PropertyRef Name="KUNNR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_AGENTEC_PAIS">
+    <End Role="PAIS" Type="Self.PAIS" Multiplicity="1" />
+    <End Role="DET_AGENTEC" Type="Self.DET_AGENTEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAIS">
+        <PropertyRef Name="LAND" />
+      </Principal>
+      <Dependent Role="DET_AGENTEC">
+        <PropertyRef Name="PAIS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_AGENTEC_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DET_AGENTEC" Type="Self.DET_AGENTEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_AGENTEC">
+        <PropertyRef Name="USUARIOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_AGENTEC_USUARIO1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DET_AGENTEC" Type="Self.DET_AGENTEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_AGENTEC">
+        <PropertyRef Name="USUARIOA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DET_AGENTEH_GAUTORIZACION">
     <End Role="GAUTORIZACION" Type="Self.GAUTORIZACION" Multiplicity="1" />
     <End Role="DET_AGENTEH" Type="Self.DET_AGENTEH" Multiplicity="*" />
@@ -2565,18 +2680,6 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
       </Principal>
       <Dependent Role="DOCUMENTOTS">
         <PropertyRef Name="NUM_DOC" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DOCUMENTOTS_TS_FORM">
-    <End Role="TS_FORM" Type="Self.TS_FORM" Multiplicity="1" />
-    <End Role="DOCUMENTOTS" Type="Self.DOCUMENTOTS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TS_FORM">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="DOCUMENTOTS">
-        <PropertyRef Name="TSFORM_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3376,18 +3479,6 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_TS_FORMT_TS_FORM">
-    <End Role="TS_FORM" Type="Self.TS_FORM" Multiplicity="1" />
-    <End Role="TS_FORMT" Type="Self.TS_FORMT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TS_FORM">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="TS_FORMT">
-        <PropertyRef Name="TSFORM_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_TSOL_RANGO">
     <End Role="RANGO" Type="Self.RANGO" Multiplicity="1" />
     <End Role="TSOL" Type="Self.TSOL" Multiplicity="*" />
@@ -3787,6 +3878,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
   </Function>
   <EntityContainer Name="TAT001ModelStoreContainer">
     <EntitySet Name="ACCION" EntityType="Self.ACCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="APPSETTING" EntityType="Self.APPSETTING" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAMPOZKE24" EntityType="Self.CAMPOZKE24" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAMPOZKE24T" EntityType="Self.CAMPOZKE24T" Schema="dbo" store:Type="Tables" />
@@ -3809,6 +3901,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
     <EntitySet Name="CUENTA" EntityType="Self.CUENTA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DELEGAR" EntityType="Self.DELEGAR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_AGENTE" EntityType="Self.DET_AGENTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_AGENTEH" EntityType="Self.DET_AGENTEH" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_AGENTEP" EntityType="Self.DET_AGENTEP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" Schema="dbo" store:Type="Tables" />
@@ -3816,6 +3909,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
     <EntitySet Name="DET_APROBP" EntityType="Self.DET_APROBP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_TAX" EntityType="Self.DET_TAX" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_TAXEO" EntityType="Self.DET_TAXEO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_TAXEOC" EntityType="Self.DET_TAXEOC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DOCUMENTBORR" EntityType="Self.DOCUMENTBORR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DOCUMENTOA" EntityType="Self.DOCUMENTOA" Schema="dbo" store:Type="Tables" />
@@ -3875,8 +3969,6 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
     <EntitySet Name="TCLIENTE" EntityType="Self.TCLIENTE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TCLIENTET" EntityType="Self.TCLIENTET" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TEXTO" EntityType="Self.TEXTO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TEXTOCARTAF" EntityType="Self.TEXTOCARTAF" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TEXTOCARTAV" EntityType="Self.TEXTOCARTAV" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRETENCION" EntityType="Self.TRETENCION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRETENCIONT" EntityType="Self.TRETENCIONT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TREVERSA" EntityType="Self.TREVERSA" Schema="dbo" store:Type="Tables" />
@@ -4156,6 +4248,22 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
       <End Role="PUESTO" EntitySet="PUESTO" />
       <End Role="DET_AGENTE" EntitySet="DET_AGENTE" />
     </AssociationSet>
+    <AssociationSet Name="FK_DET_AGENTEC_CLIENTE" Association="Self.FK_DET_AGENTEC_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_AGENTEC_PAIS" Association="Self.FK_DET_AGENTEC_PAIS">
+      <End Role="PAIS" EntitySet="PAIS" />
+      <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_AGENTEC_USUARIO" Association="Self.FK_DET_AGENTEC_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_AGENTEC_USUARIO1" Association="Self.FK_DET_AGENTEC_USUARIO1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
+    </AssociationSet>
     <AssociationSet Name="FK_DET_AGENTEH_GAUTORIZACION" Association="Self.FK_DET_AGENTEH_GAUTORIZACION">
       <End Role="GAUTORIZACION" EntitySet="GAUTORIZACION" />
       <End Role="DET_AGENTEH" EntitySet="DET_AGENTEH" />
@@ -4282,10 +4390,6 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
     </AssociationSet>
     <AssociationSet Name="FK_DOCUMENTOTS_DOCUMENTO" Association="Self.FK_DOCUMENTOTS_DOCUMENTO">
       <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
-      <End Role="DOCUMENTOTS" EntitySet="DOCUMENTOTS" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DOCUMENTOTS_TS_FORM" Association="Self.FK_DOCUMENTOTS_TS_FORM">
-      <End Role="TS_FORM" EntitySet="TS_FORM" />
       <End Role="DOCUMENTOTS" EntitySet="DOCUMENTOTS" />
     </AssociationSet>
     <AssociationSet Name="FK_FLUJO_DOCUMENTO" Association="Self.FK_FLUJO_DOCUMENTO">
@@ -4542,10 +4646,6 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
     </AssociationSet>
     <AssociationSet Name="FK_TS_FORMT_SPRAS" Association="Self.FK_TS_FORMT_SPRAS">
       <End Role="SPRAS" EntitySet="SPRAS" />
-      <End Role="TS_FORMT" EntitySet="TS_FORMT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TS_FORMT_TS_FORM" Association="Self.FK_TS_FORMT_TS_FORM">
-      <End Role="TS_FORM" EntitySet="TS_FORM" />
       <End Role="TS_FORMT" EntitySet="TS_FORMT" />
     </AssociationSet>
     <AssociationSet Name="FK_TSOL_RANGO" Association="Self.FK_TSOL_RANGO">

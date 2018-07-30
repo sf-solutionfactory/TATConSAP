@@ -4,9 +4,8 @@ using System.Configuration;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TAT001.Services;
+using TATconexionSAP.Entities;
 
 namespace TATconexionSAP.Services
 {
@@ -169,7 +168,7 @@ namespace TATconexionSAP.Services
                                     {
                                         f.ESTATUS = "A";
                                         f.FECHAM = DateTime.Now;
-                                        ProcesaFlujo2 p = new ProcesaFlujo2();
+                                        ProcesaFlujo p = new ProcesaFlujo();
                                         string res = p.procesa(f, "");
 
                                         if (res == "0")
