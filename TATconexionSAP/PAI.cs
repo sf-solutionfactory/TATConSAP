@@ -25,6 +25,7 @@ namespace TATconexionSAP
             this.TAX_LAND = new HashSet<TAX_LAND>();
             this.TAXEOHs = new HashSet<TAXEOH>();
             this.TS_FORM = new HashSet<TS_FORM>();
+            this.DET_AGENTEC = new HashSet<DET_AGENTEC>();
         }
     
         public string LAND { get; set; }
@@ -54,5 +55,7 @@ namespace TATconexionSAP
         public virtual ICollection<TAXEOH> TAXEOHs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TS_FORM> TS_FORM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DET_AGENTEC> DET_AGENTEC { get; set; }
     }
 }

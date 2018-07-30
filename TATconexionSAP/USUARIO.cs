@@ -30,6 +30,8 @@ namespace TATconexionSAP
             this.PRESUPSAPHs = new HashSet<PRESUPSAPH>();
             this.PRESUPUESTOHs = new HashSet<PRESUPUESTOH>();
             this.GAUTORIZACIONs = new HashSet<GAUTORIZACION>();
+            this.DET_AGENTEC = new HashSet<DET_AGENTEC>();
+            this.DET_AGENTEC1 = new HashSet<DET_AGENTEC>();
         }
     
         public string ID { get; set; }
@@ -74,5 +76,9 @@ namespace TATconexionSAP
         public virtual SPRA SPRA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GAUTORIZACION> GAUTORIZACIONs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DET_AGENTEC> DET_AGENTEC { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DET_AGENTEC> DET_AGENTEC1 { get; set; }
     }
 }

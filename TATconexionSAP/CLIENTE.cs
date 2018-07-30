@@ -21,6 +21,7 @@ namespace TATconexionSAP
             this.CONTACTOCs = new HashSet<CONTACTOC>();
             this.DOCUMENTOes = new HashSet<DOCUMENTO>();
             this.TAXEOHs = new HashSet<TAXEOH>();
+            this.DET_AGENTEC = new HashSet<DET_AGENTEC>();
         }
     
         public string VKORG { get; set; }
@@ -67,5 +68,7 @@ namespace TATconexionSAP
         public virtual ICollection<DOCUMENTO> DOCUMENTOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAXEOH> TAXEOHs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DET_AGENTEC> DET_AGENTEC { get; set; }
     }
 }

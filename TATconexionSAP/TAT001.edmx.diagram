@@ -280,6 +280,12 @@
         <AssociationConnector Association="TAT001Model.FK_WORKFT_WORKFV" ManuallyRouted="false" />
         <AssociationConnector Association="TAT001Model.USUARIOGA" ManuallyRouted="false" />
         <EntityTypeShape EntityType="TAT001Model.APPSETTING" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TAT001Model.DET_AGENTEC" Width="1.5" PointX="26.25" PointY="65.75" />
+        <EntityTypeShape EntityType="TAT001Model.DET_TAXEOC" Width="1.5" PointX="15.375" PointY="3.75" />
+        <AssociationConnector Association="TAT001Model.FK_DET_AGENTEC_CLIENTE" />
+        <AssociationConnector Association="TAT001Model.FK_DET_AGENTEC_PAIS" />
+        <AssociationConnector Association="TAT001Model.FK_DET_AGENTEC_USUARIO" />
+        <AssociationConnector Association="TAT001Model.FK_DET_AGENTEC_USUARIO1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
