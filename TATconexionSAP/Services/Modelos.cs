@@ -29,7 +29,7 @@ namespace TATconexionSAP.Services
             try
             {
                 string[] archivos = Directory.GetFiles(cadena += sap += datasync, "*.txt", SearchOption.AllDirectories);
-
+                Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
                 //en este for sabre cuales archivos usar
                 for (int i = 0; i < archivos.Length; i++)
                 {
@@ -42,6 +42,7 @@ namespace TATconexionSAP.Services
                         archivos2.Add(archivos[i]);
                     }
                 }
+                Console.WriteLine(archivos2.Count + " _2");//RSG 30.07.2018
                 //en este for armo un objeto para posterior manipular hacia la bd
                 for (int i = 0; i < archivos2.Count; i++)
                 {
