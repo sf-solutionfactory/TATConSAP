@@ -126,7 +126,11 @@ namespace TATconexionSAP.Services
                         try
                         {
                             db.DOCUMENTOSAPs.Add(ds);
+<<<<<<< HEAD
                             db.SaveChanges();
+=======
+                            db.SaveChanges();
+>>>>>>> 076c70c8f9beea57b102e752d70cfe79b04dca39
                             moverArchivo(archivos[i]);
                         }
                         catch
@@ -137,7 +141,11 @@ namespace TATconexionSAP.Services
                             ds.CUENTA_A = lstd[i].Cuenta_abono.ToString();
                             ds.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
                             db.Entry(ds).State = EntityState.Modified;
+<<<<<<< HEAD
                             db.SaveChanges();
+=======
+                            db.SaveChanges();
+>>>>>>> 076c70c8f9beea57b102e752d70cfe79b04dca39
                             moverArchivo(archivos[i]);
                         }
 
@@ -223,6 +231,23 @@ namespace TATconexionSAP.Services
                     // Console.WriteLine(ex); // Write error
                     throw new Exception(ex.Message);
                 }
+            }
+        }
+
+        public void moverArchivo(string archivo)
+        {
+            try
+            {
+                var from = Path.Combine(archivo);
+                var arc2 = archivo.Replace(datasync, dataproc);
+                var to = Path.Combine(arc2);
+
+                File.Move(from, to); // Try to move
+            }
+            catch (IOException ex)
+            {
+                // Console.WriteLine(ex); // Write error
+                throw new Exception(ex.Message);
             }
         }
 
