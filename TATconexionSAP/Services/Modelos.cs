@@ -17,11 +17,11 @@ namespace TATconexionSAP.Services
         public string datasync = "\\DATA_SYNC";
         public string dataproc = "\\DATA_PROC";
         #endregion
-        public void leerArchivos()
+        public List<string> leerArchivos()
         {
+            List<string> errores = new List<string>();
             APPSETTING sett = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("filePath") & x.ACTIVO).FirstOrDefault();//RSG 30.07.2018
-            if (sett == null)
-                return;
+            if (sett == null) { errores.Add("Falta configuración de PATH!"); }
             //var cadena = ConfigurationManager.AppSettings["url"];
             var cadena = sett.VALUE;
             List<doc> lstd = new List<doc>();
@@ -79,8 +79,10 @@ namespace TATconexionSAP.Services
             }
             catch (Exception ex)
             {
+                errores.Add(ex.Message);
                 throw new Exception(ex.Message);
             }
+            return errores;
         }
 
         public void validarBd(List<doc> lstd, List<string> archivos)
@@ -126,11 +128,7 @@ namespace TATconexionSAP.Services
                         try
                         {
                             db.DOCUMENTOSAPs.Add(ds);
-<<<<<<< HEAD
                             db.SaveChanges();
-=======
-                            db.SaveChanges();
->>>>>>> 076c70c8f9beea57b102e752d70cfe79b04dca39
                             moverArchivo(archivos[i]);
                         }
                         catch
@@ -141,11 +139,8 @@ namespace TATconexionSAP.Services
                             ds.CUENTA_A = lstd[i].Cuenta_abono.ToString();
                             ds.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
                             db.Entry(ds).State = EntityState.Modified;
-<<<<<<< HEAD
+
                             db.SaveChanges();
-=======
-                            db.SaveChanges();
->>>>>>> 076c70c8f9beea57b102e752d70cfe79b04dca39
                             moverArchivo(archivos[i]);
                         }
 
@@ -231,23 +226,6 @@ namespace TATconexionSAP.Services
                     // Console.WriteLine(ex); // Write error
                     throw new Exception(ex.Message);
                 }
-            }
-        }
-
-        public void moverArchivo(string archivo)
-        {
-            try
-            {
-                var from = Path.Combine(archivo);
-                var arc2 = archivo.Replace(datasync, dataproc);
-                var to = Path.Combine(arc2);
-
-                File.Move(from, to); // Try to move
-            }
-            catch (IOException ex)
-            {
-                // Console.WriteLine(ex); // Write error
-                throw new Exception(ex.Message);
             }
         }
 
