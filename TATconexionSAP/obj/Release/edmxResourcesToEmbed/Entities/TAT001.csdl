@@ -349,6 +349,7 @@
       <End Role="USUARIO" EntitySet="USUARIOs" />
       <End Role="DET_TAXEO" EntitySet="DET_TAXEO" />
     </AssociationSet>
+    <EntitySet Name="CONMAILs" EntityType="TAT001Model.CONMAIL" />
   </EntityContainer>
   <EntityType Name="USUARIO">
     <Key>
@@ -691,4 +692,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="CONMAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="HOST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PORT" Type="Int32" />
+    <Property Name="SSL" Type="Boolean" Nullable="false" />
+    <Property Name="MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+  </EntityType>
 </Schema>

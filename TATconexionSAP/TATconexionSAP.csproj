@@ -58,6 +58,9 @@
     <Compile Include="Entities\APPSETTING.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CONMAIL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CONPOSAPH.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -121,6 +124,7 @@
     <Compile Include="Entities\WORKFV.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\MailErrores.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ArchivoContable.cs" />

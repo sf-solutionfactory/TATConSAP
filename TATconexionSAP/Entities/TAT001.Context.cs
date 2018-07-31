@@ -43,5 +43,6 @@ namespace TATconexionSAP.Entities
         public virtual DbSet<DOCUMENTOREC> DOCUMENTORECs { get; set; }
         public virtual DbSet<DET_TAXEO> DET_TAXEO { get; set; }
         public virtual DbSet<TAX_LAND> TAX_LAND { get; set; }
+        public virtual DbSet<CONMAIL> CONMAILs { get; set; }
     }
 }

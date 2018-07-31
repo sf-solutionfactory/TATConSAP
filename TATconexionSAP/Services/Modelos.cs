@@ -127,6 +127,7 @@ namespace TATconexionSAP.Services
                         {
                             db.DOCUMENTOSAPs.Add(ds);
                             db.SaveChanges();
+                            moverArchivo(archivos[i]);
                         }
                         catch
                         {
@@ -137,6 +138,7 @@ namespace TATconexionSAP.Services
                             ds.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
                             db.Entry(ds).State = EntityState.Modified;
                             db.SaveChanges();
+                            moverArchivo(archivos[i]);
                         }
 
 
@@ -172,7 +174,7 @@ namespace TATconexionSAP.Services
                                         ProcesaFlujo p = new ProcesaFlujo();
                                         string res = p.procesa(f, "");
 
-                                        if (res == "0")
+                                        if (res == "0" | res == "")
                                         {
                                             FLUJO f1 = db.FLUJOes.Where(a => a.NUM_DOC == parcial.NUM_DOC).OrderByDescending(a => a.POS).FirstOrDefault();
 
@@ -181,8 +183,7 @@ namespace TATconexionSAP.Services
                                             res = p.procesa(f, "");
                                         }
 
-                                        if (res != "0")
-                                            x--;
+                                        //if (res == "0" | res == "")
                                     }
                                 }
 
@@ -193,10 +194,10 @@ namespace TATconexionSAP.Services
             }
             try
             {
-                if (x == lstd.Count)
-                {
-                    moverArchivos(archivos);
-                }
+                //if (x == lstd.Count)
+                //{
+                //    moverArchivos(archivos);
+                //}
             }
             catch (Exception varEx)
             {
@@ -222,6 +223,23 @@ namespace TATconexionSAP.Services
                     // Console.WriteLine(ex); // Write error
                     throw new Exception(ex.Message);
                 }
+            }
+        }
+
+        public void moverArchivo(string archivo)
+        {
+            try
+            {
+                var from = Path.Combine(archivo);
+                var arc2 = archivo.Replace(datasync, dataproc);
+                var to = Path.Combine(arc2);
+
+                File.Move(from, to); // Try to move
+            }
+            catch (IOException ex)
+            {
+                // Console.WriteLine(ex); // Write error
+                throw new Exception(ex.Message);
             }
         }
     }

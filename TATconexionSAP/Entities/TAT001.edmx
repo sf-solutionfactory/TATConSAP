@@ -22,6 +22,18 @@
           <Property Name="VALUE" Type="nvarchar" MaxLength="255" />
           <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="CONMAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="HOST" Type="nvarchar" MaxLength="100" />
+          <Property Name="PORT" Type="int" />
+          <Property Name="SSL" Type="bit" Nullable="false" />
+          <Property Name="MAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="PASS" Type="nvarchar" MaxLength="100" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="CONPOSAPH">
           <Key>
             <PropertyRef Name="CONSECUTIVO" />
@@ -583,6 +595,7 @@
         <EntityContainer Name="TAT001ModelStoreContainer">
           <EntitySet Name="ACCION" EntityType="Self.ACCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="APPSETTING" EntityType="Self.APPSETTING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONMAIL" EntityType="Self.CONMAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONPOSAPH" EntityType="Self.CONPOSAPH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONPOSAPP" EntityType="Self.CONPOSAPP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELEGAR" EntityType="Self.DELEGAR" Schema="dbo" store:Type="Tables" />
@@ -1017,6 +1030,7 @@
             <End Role="USUARIO" EntitySet="USUARIOs" />
             <End Role="DET_TAXEO" EntitySet="DET_TAXEO" />
           </AssociationSet>
+          <EntitySet Name="CONMAILs" EntityType="TAT001Model.CONMAIL" />
         </EntityContainer>
         <EntityType Name="USUARIO">
           <Key>
@@ -1359,6 +1373,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CONMAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="HOST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PORT" Type="Int32" />
+          <Property Name="SSL" Type="Boolean" Nullable="false" />
+          <Property Name="MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1719,6 +1745,19 @@
                 <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
                 <ScalarProperty Name="PAIS_ID" ColumnName="PAIS_ID" />
                 <ScalarProperty Name="SOCIEDAD_ID" ColumnName="SOCIEDAD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONMAILs">
+            <EntityTypeMapping TypeName="TAT001Model.CONMAIL">
+              <MappingFragment StoreEntitySet="CONMAIL">
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="SSL" ColumnName="SSL" />
+                <ScalarProperty Name="PORT" ColumnName="PORT" />
+                <ScalarProperty Name="HOST" ColumnName="HOST" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

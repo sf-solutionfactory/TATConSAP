@@ -17,8 +17,13 @@ namespace TATconexionSAP
         static void Main(string[] args)
         {
             Modelos m = new Modelos();
-            m.leerArchivos();
-            Console.ReadKey();
+            List<string> err = m.leerArchivos();
+            if (err.Count > 1)
+            {
+                MailErrores me = new MailErrores();
+                me.enviarErrores(err);
+            }
+            
         }
     }
 }
