@@ -133,12 +133,12 @@ namespace TATconexionSAP.Services
                         }
                         catch
                         {
-                            ds = db.DOCUMENTOSAPs.Where(a => a.NUM_DOC == ds.NUM_DOC).FirstOrDefault();
-                            ds.BUKRS = lstd[i].Sociedad;
-                            ds.EJERCICIO = lstd[i].Año;
-                            ds.CUENTA_A = lstd[i].Cuenta_abono.ToString();
-                            ds.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
-                            db.Entry(ds).State = EntityState.Modified;
+                            DOCUMENTOSAP ds1 = db.DOCUMENTOSAPs.Find(ds.NUM_DOC);
+                            ds1.BUKRS = lstd[i].Sociedad;
+                            ds1.EJERCICIO = lstd[i].Año;
+                            ds1.CUENTA_A = lstd[i].Cuenta_abono.ToString();
+                            ds1.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
+                            db.Entry(ds1).State = EntityState.Modified;
 
                             db.SaveChanges();
                             moverArchivo(archivos[i]);

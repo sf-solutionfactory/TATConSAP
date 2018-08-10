@@ -17,14 +17,14 @@ namespace TATconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USUARIO()
         {
+            this.DELEGARs = new HashSet<DELEGAR>();
+            this.DELEGARs1 = new HashSet<DELEGAR>();
             this.DET_AGENTEC = new HashSet<DET_AGENTEC>();
             this.DET_AGENTEC1 = new HashSet<DET_AGENTEC>();
+            this.DET_TAXEO = new HashSet<DET_TAXEO>();
             this.DOCUMENTOes = new HashSet<DOCUMENTO>();
             this.FLUJOes = new HashSet<FLUJO>();
             this.FLUJOes1 = new HashSet<FLUJO>();
-            this.DELEGARs = new HashSet<DELEGAR>();
-            this.DELEGARs1 = new HashSet<DELEGAR>();
-            this.DET_TAXEO = new HashSet<DET_TAXEO>();
         }
     
         public string ID { get; set; }
@@ -41,20 +41,20 @@ namespace TATconexionSAP.Entities
         public string BUNIT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DELEGAR> DELEGARs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DELEGAR> DELEGARs1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DET_AGENTEC> DET_AGENTEC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DET_AGENTEC> DET_AGENTEC1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DET_TAXEO> DET_TAXEO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTO> DOCUMENTOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DELEGAR> DELEGARs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DELEGAR> DELEGARs1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DET_TAXEO> DET_TAXEO { get; set; }
     }
 }

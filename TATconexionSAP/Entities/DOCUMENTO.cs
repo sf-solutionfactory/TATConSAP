@@ -17,8 +17,8 @@ namespace TATconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DOCUMENTO()
         {
-            this.FLUJOes = new HashSet<FLUJO>();
             this.DOCUMENTORECs = new HashSet<DOCUMENTOREC>();
+            this.FLUJOes = new HashSet<FLUJO>();
         }
     
         public decimal NUM_DOC { get; set; }
@@ -93,12 +93,15 @@ namespace TATconexionSAP.Entities
         public string DOCUMENTO_SAP { get; set; }
         public Nullable<decimal> PORC_APOYO { get; set; }
         public Nullable<bool> LIGADA { get; set; }
+        public Nullable<bool> OBJETIVOQ { get; set; }
+        public Nullable<int> FRECUENCIA_LIQ { get; set; }
+        public Nullable<decimal> OBJQ_PORC { get; set; }
     
-        public virtual DOCUMENTOSAP DOCUMENTOSAP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FLUJO> FLUJOes { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTOREC> DOCUMENTORECs { get; set; }
+        public virtual DOCUMENTOSAP DOCUMENTOSAP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FLUJO> FLUJOes { get; set; }
     }
 }

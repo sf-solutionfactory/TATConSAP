@@ -19,6 +19,14 @@ namespace TATconexionSAP.Entities
         public Nullable<int> EJERCICIO { get; set; }
         public string CUENTA_C { get; set; }
         public string CUENTA_A { get; set; }
+        public string REGISTRO_PR { get; set; }
+        public string REGISTRO_NO { get; set; }
+        public string REGISTRO_RE { get; set; }
+        public string REGISTRO_AP { get; set; }
+        public string BLART { get; set; }
+        public string LIFNR { get; set; }
+        public string KUNNR { get; set; }
+        public Nullable<decimal> IMPORTE { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
     }

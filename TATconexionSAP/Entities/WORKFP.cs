@@ -36,9 +36,9 @@ namespace TATconexionSAP.Entities
         public Nullable<int> EMAIL_TXT_ID { get; set; }
         public Nullable<int> EMAIL_INN_ID { get; set; }
     
+        public virtual ACCION ACCION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes { get; set; }
         public virtual WORKFV WORKFV { get; set; }
-        public virtual ACCION ACCION { get; set; }
     }
 }

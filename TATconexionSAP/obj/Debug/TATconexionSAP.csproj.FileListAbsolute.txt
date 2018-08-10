@@ -31,4 +31,3 @@ C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFrame
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CoreCompileInputs.cache
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.exe
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.pdb
-C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
