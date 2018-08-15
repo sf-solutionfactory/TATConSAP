@@ -10,7 +10,7 @@ namespace TATconexionSAP.Services
     {
         public string numero_TAT { get; set; }
         public string Mensaje { get; set; }
-        public int Num_doc_SAP { get; set; }
+        public decimal Num_doc_SAP { get; set; }
         public string Sociedad { get; set; }
         public int Año { get; set; }
         public long Cuenta_cargo { get; set; }

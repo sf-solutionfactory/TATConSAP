@@ -58,14 +58,14 @@ namespace TATconexionSAP.Services
                             {
                                 d.numero_TAT = val[0];
                                 d.Mensaje = val[1];
-                                d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                d.Cuenta_abono = Convert.ToInt64(val[6]);
+                                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                                //d.Cuenta_abono = Convert.ToInt64(val[6]);
                             }
                             else
                             {
                                 d.numero_TAT = val[0];
                                 d.Mensaje = val[1];
-                                d.Num_doc_SAP = int.Parse(val[2]);
+                                d.Num_doc_SAP = decimal.Parse(val[2]);
                                 d.Sociedad = val[3];
                                 d.Año = int.Parse(val[4]);
                                 d.Cuenta_cargo = Convert.ToInt64(val[5]);
@@ -120,7 +120,7 @@ namespace TATconexionSAP.Services
                         x = x + db.SaveChanges();
                         //Agregamos en la tabla los valores
                         DOCUMENTOSAP ds = new DOCUMENTOSAP();
-                        ds.NUM_DOC = int.Parse(lstd[i].numero_TAT);
+                        ds.NUM_DOC = decimal.Parse(lstd[i].numero_TAT);
                         ds.BUKRS = lstd[i].Sociedad;
                         ds.EJERCICIO = lstd[i].Año;
                         ds.CUENTA_A = lstd[i].Cuenta_abono.ToString();
