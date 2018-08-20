@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TAT001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TAT001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACCION">
           <Key>
             <PropertyRef Name="ID" />
@@ -254,6 +254,8 @@
           <Property Name="OBJETIVOQ" Type="bit" />
           <Property Name="FRECUENCIA_LIQ" Type="int" />
           <Property Name="OBJQ_PORC" Type="decimal" Precision="13" Scale="5" />
+          <Property Name="CUENTAP" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="CUENTAPL" Type="numeric" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="DOCUMENTOREC">
           <Key>
@@ -291,6 +293,7 @@
           <Property Name="LIFNR" Type="nchar" MaxLength="10" />
           <Property Name="KUNNR" Type="nchar" MaxLength="10" />
           <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
+          <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="FLUJO">
           <Key>
@@ -688,8 +691,7 @@
             <End Role="WORKFV" EntitySet="WORKFV" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TAT001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -952,6 +954,8 @@
           <NavigationProperty Name="DOCUMENTORECs" Relationship="Self.FK_DOCUMENTOREC_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOREC" />
           <NavigationProperty Name="DOCUMENTOSAP" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOSAP" />
           <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
+          <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="DOCUMENTOREC">
           <Key>
@@ -991,6 +995,7 @@
           <Property Name="KUNNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTOSAP" ToRole="DOCUMENTO" />
+          <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="FLUJO">
           <Key>
@@ -1572,6 +1577,8 @@
           <EntitySetMapping Name="DOCUMENTOes">
             <EntityTypeMapping TypeName="TAT001Model.DOCUMENTO">
               <MappingFragment StoreEntitySet="DOCUMENTO">
+                <ScalarProperty Name="CUENTAPL" ColumnName="CUENTAPL" />
+                <ScalarProperty Name="CUENTAP" ColumnName="CUENTAP" />
                 <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
                 <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
                 <ScalarProperty Name="TALL_ID" ColumnName="TALL_ID" />
@@ -1672,6 +1679,7 @@
           <EntitySetMapping Name="DOCUMENTOSAPs">
             <EntityTypeMapping TypeName="TAT001Model.DOCUMENTOSAP">
               <MappingFragment StoreEntitySet="DOCUMENTOSAP">
+                <ScalarProperty Name="DESCR" ColumnName="DESCR" />
                 <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
                 <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
                 <ScalarProperty Name="EJERCICIO" ColumnName="EJERCICIO" />

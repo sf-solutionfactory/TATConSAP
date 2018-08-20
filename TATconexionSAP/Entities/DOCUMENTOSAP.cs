@@ -27,6 +27,7 @@ namespace TATconexionSAP.Entities
         public string LIFNR { get; set; }
         public string KUNNR { get; set; }
         public Nullable<decimal> IMPORTE { get; set; }
+        public string DESCR { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
     }

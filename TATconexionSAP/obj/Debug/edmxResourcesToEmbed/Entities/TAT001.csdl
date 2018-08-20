@@ -259,6 +259,8 @@
     <NavigationProperty Name="DOCUMENTORECs" Relationship="Self.FK_DOCUMENTOREC_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOREC" />
     <NavigationProperty Name="DOCUMENTOSAP" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOSAP" />
     <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
+    <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
     <Key>
@@ -298,6 +300,7 @@
     <Property Name="KUNNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTOSAP" ToRole="DOCUMENTO" />
+    <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>

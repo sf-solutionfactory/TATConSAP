@@ -249,6 +249,8 @@
     <Property Name="OBJETIVOQ" Type="bit" />
     <Property Name="FRECUENCIA_LIQ" Type="int" />
     <Property Name="OBJQ_PORC" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="CUENTAP" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="CUENTAPL" Type="numeric" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
     <Key>
@@ -286,6 +288,7 @@
     <Property Name="LIFNR" Type="nchar" MaxLength="10" />
     <Property Name="KUNNR" Type="nchar" MaxLength="10" />
     <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>

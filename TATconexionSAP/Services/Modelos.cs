@@ -47,8 +47,9 @@ namespace TATconexionSAP.Services
                 for (int i = 0; i < archivos2.Count; i++)
                 {
                     //Leo todas las lineas del archivo
-                    string[] readText = File.ReadAllLines(archivos2[i]);
-                    foreach (var item in readText)
+                    //string[] readText = File.ReadAllLines(archivos2[i]);
+                    //foreach (var item in readText)
+                    foreach (var item in File.ReadLines(archivos2[i]))
                     {
                         doc d = new doc();
                         string[] val = item.Split('|');
@@ -70,6 +71,14 @@ namespace TATconexionSAP.Services
                                 d.Año = int.Parse(val[4]);
                                 d.Cuenta_cargo = Convert.ToInt64(val[5]);
                                 d.Cuenta_abono = Convert.ToInt64(val[6]);
+                                try
+                                {
+                                    d.blart = val[7];
+                                    d.kunnr = val[8];
+                                    d.desc = val[9];
+                                    d.importe = decimal.Parse(val[10]);
+                                }
+                                catch { }
                             }
                             lstd.Add(d);
                         }
@@ -125,6 +134,10 @@ namespace TATconexionSAP.Services
                         ds.EJERCICIO = lstd[i].Año;
                         ds.CUENTA_A = lstd[i].Cuenta_abono.ToString();
                         ds.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
+                        ds.BLART = lstd[i].blart;
+                        ds.KUNNR = lstd[i].kunnr;
+                        ds.DESCR = lstd[i].desc;
+                        ds.IMPORTE = lstd[i].importe;
                         try
                         {
                             db.DOCUMENTOSAPs.Add(ds);
@@ -138,6 +151,10 @@ namespace TATconexionSAP.Services
                             ds1.EJERCICIO = lstd[i].Año;
                             ds1.CUENTA_A = lstd[i].Cuenta_abono.ToString();
                             ds1.CUENTA_C = lstd[i].Cuenta_cargo.ToString();
+                            ds.BLART = lstd[i].blart;
+                            ds.KUNNR = lstd[i].kunnr;
+                            ds.DESCR = lstd[i].desc;
+                            ds.IMPORTE = lstd[i].importe;
                             db.Entry(ds1).State = EntityState.Modified;
 
                             db.SaveChanges();

@@ -15,5 +15,9 @@ namespace TATconexionSAP.Services
         public int Año { get; set; }
         public long Cuenta_cargo { get; set; }
         public long Cuenta_abono { get; set; }
+        public string blart { get; set; }
+        public string kunnr { get; set; }
+        public string desc { get; set; }
+        public decimal importe { get; set; }
     }
 }

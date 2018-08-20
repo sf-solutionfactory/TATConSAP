@@ -159,6 +159,8 @@
     <EntitySetMapping Name="DOCUMENTOes">
       <EntityTypeMapping TypeName="TAT001Model.DOCUMENTO">
         <MappingFragment StoreEntitySet="DOCUMENTO">
+          <ScalarProperty Name="CUENTAPL" ColumnName="CUENTAPL" />
+          <ScalarProperty Name="CUENTAP" ColumnName="CUENTAP" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
           <ScalarProperty Name="TALL_ID" ColumnName="TALL_ID" />
@@ -259,6 +261,7 @@
     <EntitySetMapping Name="DOCUMENTOSAPs">
       <EntityTypeMapping TypeName="TAT001Model.DOCUMENTOSAP">
         <MappingFragment StoreEntitySet="DOCUMENTOSAP">
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="EJERCICIO" ColumnName="EJERCICIO" />
