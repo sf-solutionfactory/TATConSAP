@@ -55,32 +55,37 @@ namespace TATconexionSAP.Services
                         string[] val = item.Split('|');
                         if (val != null)
                         {
-                            if (val[1] == "Error")
-                            {
-                                d.numero_TAT = val[0];
-                                d.Mensaje = val[1];
-                                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                //d.Cuenta_abono = Convert.ToInt64(val[6]);
-                            }
+                            if (val.Length < 2)
+                                errores.Add("Archivo inválido" + archivos2[i]);
                             else
                             {
-                                d.numero_TAT = val[0];
-                                d.Mensaje = val[1];
-                                d.Num_doc_SAP = decimal.Parse(val[2]);
-                                d.Sociedad = val[3];
-                                d.Año = int.Parse(val[4]);
-                                d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                d.Cuenta_abono = Convert.ToInt64(val[6]);
-                                try
+                                if (val[1] == "Error")
                                 {
-                                    d.blart = val[7];
-                                    d.kunnr = val[8];
-                                    d.desc = val[9];
-                                    d.importe = decimal.Parse(val[10]);
+                                    d.numero_TAT = val[0];
+                                    d.Mensaje = val[1];
+                                    //d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                                    //d.Cuenta_abono = Convert.ToInt64(val[6]);
                                 }
-                                catch { }
+                                else
+                                {
+                                    d.numero_TAT = val[0];
+                                    d.Mensaje = val[1];
+                                    d.Num_doc_SAP = decimal.Parse(val[2]);
+                                    d.Sociedad = val[3];
+                                    d.Año = int.Parse(val[4]);
+                                    d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                                    d.Cuenta_abono = Convert.ToInt64(val[6]);
+                                    try
+                                    {
+                                        d.blart = val[7];
+                                        d.kunnr = val[8];
+                                        d.desc = val[9];
+                                        d.importe = decimal.Parse(val[10]);
+                                    }
+                                    catch { }
+                                }
+                                lstd.Add(d);
                             }
-                            lstd.Add(d);
                         }
                     }
                 }
