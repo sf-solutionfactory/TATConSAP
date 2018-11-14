@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
@@ -49,46 +49,58 @@ namespace TATconexionSAP.Services
                     //Leo todas las lineas del archivo
                     //string[] readText = File.ReadAllLines(archivos2[i]);
                     //foreach (var item in readText)
+                    int cont = 1;
                     foreach (var item in File.ReadLines(archivos2[i]))
                     {
                         doc d = new doc();
                         string[] val = item.Split('|');
                         if (val != null)
                         {
-                            if (val.Length < 2)
-                                errores.Add("Archivo inválido" + archivos2[i]);
-                            else
-                            {
-
-                                if (val[1] == "Error")
-                                {
-                                    d.numero_TAT = val[0];
-                                    d.Mensaje = val[1];
-                                    //d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                    //d.Cuenta_abono = Convert.ToInt64(val[6]);
-                                }
+                            if (item != "")
+                                if (val.Length < 2)
+                                    errores.Add("Archivo inválido" + archivos2[i]);
                                 else
                                 {
-                                    d.numero_TAT = val[0];
-                                    d.Mensaje = val[1];
-                                    d.Num_doc_SAP = decimal.Parse(val[2]);
-                                    d.Sociedad = val[3];
-                                    d.Año = int.Parse(val[4]);
-                                    d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                    d.Cuenta_abono = Convert.ToInt64(val[6]);
-                                    try
+
+                                    if (val[1] == "Error")
                                     {
-                                        d.blart = val[7];
-                                        d.kunnr = val[8];
-                                        d.desc = val[9];
-                                        d.importe = decimal.Parse(val[10]);
+                                        d.numero_TAT = val[0];
+                                        d.Mensaje = val[1];
+                                        //d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                                        //d.Cuenta_abono = Convert.ToInt64(val[6]);                                    
                                     }
-                                    catch { }
+                                    else
+                                    {
+                                        d.numero_TAT = val[0];
+                                        d.Mensaje = val[1];
+                                        d.Num_doc_SAP = decimal.Parse(val[2]);
+                                        d.Sociedad = val[3];
+                                        d.Año = int.Parse(val[4]);
+                                        d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                                        d.Cuenta_abono = Convert.ToInt64(val[6]);
+                                        try
+                                        {
+                                            d.blart = val[7];
+                                            d.kunnr = val[8];
+                                            d.desc = val[9];
+                                            d.importe = decimal.Parse(val[10]);
+                                        }
+                                        catch { }
+                                    }
+                                    d.pos = cont;
+                                    d.file = archivos2[i];
+                                    lstd.Add(d);
                                 }
-                                lstd.Add(d);
-                            }
                         }
+                        cont++;
                     }
+                }
+                foreach(doc d in lstd)
+                {
+                    if (d.pos == lstd.OrderByDescending(x => x.pos).First().pos)
+                        d.last = true;
+                    else
+                        d.last = false;
                 }
                 validarBd(lstd, archivos2);
             }
@@ -148,7 +160,9 @@ namespace TATconexionSAP.Services
                         {
                             db.DOCUMENTOSAPs.Add(ds);
                             db.SaveChanges();
-                            moverArchivo(archivos[i]);
+                            if(lstd[i].last)
+                                moverArchivo(lstd[i].file);
+                            //moverArchivo(archivos[i]);
                         }
                         catch
                         {
@@ -164,7 +178,9 @@ namespace TATconexionSAP.Services
                             db.Entry(ds1).State = EntityState.Modified;
 
                             db.SaveChanges();
-                            moverArchivo(archivos[i]);
+                            if (lstd[i].last)
+                                moverArchivo(lstd[i].file);
+                            //moverArchivo(archivos[i]);
                         }
 
 
