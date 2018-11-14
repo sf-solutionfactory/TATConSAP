@@ -59,6 +59,7 @@ namespace TATconexionSAP.Services
                                 errores.Add("Archivo inválido" + archivos2[i]);
                             else
                             {
+
                                 if (val[1] == "Error")
                                 {
                                     d.numero_TAT = val[0];

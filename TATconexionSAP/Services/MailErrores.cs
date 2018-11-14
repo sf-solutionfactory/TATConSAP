@@ -46,7 +46,7 @@ namespace TATconexionSAP.Services
                     {
                         mail.Body += "<br><span>" + mensaje + "</span>";
                     }
-                    mail.Subject = "Error programa Negociaciones- " + DateTime.Now.ToString();
+                    mail.Subject = "Error JOB conecta SAP- " + DateTime.Now.ToString();
                     client.Send(mail);
                 }
                 catch (Exception ex)

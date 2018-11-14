@@ -6,6 +6,6 @@ C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFra
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFramework.xml
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.csproj.CopyComplete
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.exe
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.pdb
-C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.csprojResolveAssemblyReference.cache

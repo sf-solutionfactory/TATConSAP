@@ -246,6 +246,11 @@
     <Property Name="DOCUMENTO_SAP" Type="nvarchar" MaxLength="10" />
     <Property Name="PORC_APOYO" Type="decimal" Precision="13" Scale="5" />
     <Property Name="LIGADA" Type="bit" />
+    <Property Name="OBJETIVOQ" Type="bit" />
+    <Property Name="FRECUENCIA_LIQ" Type="int" />
+    <Property Name="OBJQ_PORC" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="CUENTAP" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="CUENTAPL" Type="numeric" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
     <Key>
@@ -275,6 +280,15 @@
     <Property Name="EJERCICIO" Type="int" />
     <Property Name="CUENTA_C" Type="nchar" MaxLength="10" />
     <Property Name="CUENTA_A" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_PR" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_NO" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_RE" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_AP" Type="nchar" MaxLength="10" />
+    <Property Name="BLART" Type="nchar" MaxLength="2" />
+    <Property Name="LIFNR" Type="nchar" MaxLength="10" />
+    <Property Name="KUNNR" Type="nchar" MaxLength="10" />
+    <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>
