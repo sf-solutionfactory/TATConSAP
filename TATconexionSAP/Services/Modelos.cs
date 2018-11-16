@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using TAT001.Services;
 using TATconexionSAP.Entities;
+using TATconexionSAP.Services;
 
 namespace TATconexionSAP.Services
 {
@@ -16,9 +17,14 @@ namespace TATconexionSAP.Services
         public string sap = "\\SAP";
         public string datasync = "\\DATA_SYNC";
         public string dataproc = "\\DATA_PROC";
+        Log log = new Log();
         #endregion
         public List<string> leerArchivos()
         {
+            APPSETTING lg = db.APPSETTINGs.Where(x => x.NOMBRE == "logPath" & x.ACTIVO == true).FirstOrDefault();
+            log.ruta = lg.VALUE + "ConexionSAP_";
+            log.escribeLog("-----------------------------------------------------------------------START");
+
             List<string> errores = new List<string>();
             APPSETTING sett = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("filePath") & x.ACTIVO).FirstOrDefault();//RSG 30.07.2018
             if (sett == null) { errores.Add("Falta configuración de PATH!"); }
@@ -30,6 +36,7 @@ namespace TATconexionSAP.Services
             {
                 string[] archivos = Directory.GetFiles(cadena += sap += datasync, "*.txt", SearchOption.AllDirectories);
                 Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
+                log.escribeLog("Archivos en carpeta: " + archivos.Length);
                 //en este for sabre cuales archivos usar
                 for (int i = 0; i < archivos.Length; i++)
                 {
@@ -43,6 +50,7 @@ namespace TATconexionSAP.Services
                     }
                 }
                 Console.WriteLine(archivos2.Count + " _2");//RSG 30.07.2018
+                log.escribeLog("Archivos tipo LOG: " + archivos2.Count);
                 //en este for armo un objeto para posterior manipular hacia la bd
                 for (int i = 0; i < archivos2.Count; i++)
                 {
@@ -58,7 +66,10 @@ namespace TATconexionSAP.Services
                         {
                             if (item != "")
                                 if (val.Length < 2)
+                                {
+                                    log.escribeLog("Archivo inválido" + archivos2[i]);
                                     errores.Add("Archivo inválido" + archivos2[i]);
+                                }
                                 else
                                 {
 
@@ -67,10 +78,13 @@ namespace TATconexionSAP.Services
                                         d.numero_TAT = val[0];
                                         d.Mensaje = val[1];
                                         //d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                        //d.Cuenta_abono = Convert.ToInt64(val[6]);                                    
+                                        //d.Cuenta_abono = Convert.ToInt64(val[6]);   
+                                        log.escribeLog("(E) - NUM_DOC:" + val[0] + " -- MENSAJE: " + val[1]);
                                     }
                                     else
                                     {
+
+                                        log.escribeLog("(S) - NUM_DOC:" + val[0] + " -- MENSAJE: " + val[1] + " -- NUM_SAP: " + val[2]);
                                         d.numero_TAT = val[0];
                                         d.Mensaje = val[1];
                                         d.Num_doc_SAP = decimal.Parse(val[2]);
@@ -95,17 +109,21 @@ namespace TATconexionSAP.Services
                         cont++;
                     }
                 }
-                foreach(doc d in lstd)
+                foreach (doc d in lstd)
                 {
                     if (d.pos == lstd.OrderByDescending(x => x.pos).First().pos)
                         d.last = true;
                     else
                         d.last = false;
                 }
+                log.escribeLog("-------------------------------");
+                log.escribeLog("DOCS: " + lstd.Count + "ARCHIVOS: " + archivos2.Count);
+                log.escribeLog("-------------------------------ValidarBD");
                 validarBd(lstd, archivos2);
             }
             catch (Exception ex)
             {
+                log.escribeLog("ERROR LOG: " + ex.Message);
                 errores.Add(ex.Message);
                 throw new Exception(ex.Message);
             }
@@ -118,11 +136,13 @@ namespace TATconexionSAP.Services
             for (int i = 0; i < lstd.Count; i++)
             {
                 decimal de = Convert.ToDecimal(lstd[i].numero_TAT);
+                log.escribeLog("NUM_DOC: " + de);
                 //Corroboro que exista la informacion
                 var dA = db.DOCUMENTOes.Where(y => y.NUM_DOC == de).FirstOrDefault();
                 //si encuentra una coincidencia
                 if (dA != null)
                 {
+                    log.escribeLog("NUM_DOC existe: " + dA.NUM_DOC);
                     //para el estatus E/X
                     if (lstd[i].Mensaje == string.Empty)
                     {
@@ -160,8 +180,9 @@ namespace TATconexionSAP.Services
                         {
                             db.DOCUMENTOSAPs.Add(ds);
                             db.SaveChanges();
-                            if(lstd[i].last)
-                                moverArchivo(lstd[i].file);
+                            log.escribeLog("Actualiza doc -- " + dA.NUM_DOC);
+                            if (lstd[i].last)
+                                moverArchivo(lstd[i].file); log.escribeLog("Mueve archivo -- " + lstd[i].file);
                             //moverArchivo(archivos[i]);
                         }
                         catch
@@ -178,8 +199,9 @@ namespace TATconexionSAP.Services
                             db.Entry(ds1).State = EntityState.Modified;
 
                             db.SaveChanges();
+                            log.escribeLog("Actualiza doc -- " + dA.NUM_DOC);
                             if (lstd[i].last)
-                                moverArchivo(lstd[i].file);
+                                moverArchivo(lstd[i].file); log.escribeLog("Mueve archivo -- " + lstd[i].file);
                             //moverArchivo(archivos[i]);
                         }
 
@@ -187,6 +209,7 @@ namespace TATconexionSAP.Services
                     }
                     catch (Exception varEx)
                     {
+                        log.escribeLog("Error LOG -- " + varEx.ToString());
                         var ex = varEx.ToString();
                     }
 
@@ -194,10 +217,12 @@ namespace TATconexionSAP.Services
                     {
                         if (dA.DOCUMENTO_REF > 0)
                         {
+                            log.escribeLog("Es relacionado -- NUM_DOC: " + dA.NUM_DOC+" - NUM_PADRE: "+ dA.DOCUMENTO_REF);
                             List<DOCUMENTO> rela = db.DOCUMENTOes.Where(a => a.DOCUMENTO_REF == dA.DOCUMENTO_REF).ToList();
                             DOCUMENTO parcial = rela.Where(a => a.TSOL_ID == "RP").FirstOrDefault();
                             if (parcial != null)
                             {
+                                log.escribeLog("Es parcial -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
                                 bool contabilizados = true;
                                 foreach (DOCUMENTO rel in rela)
                                 {
@@ -208,6 +233,7 @@ namespace TATconexionSAP.Services
 
                                 if (contabilizados)
                                 {
+                                    log.escribeLog("Estan contabilizados -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
                                     FLUJO f = db.FLUJOes.Where(a => a.NUM_DOC == parcial.NUM_DOC).OrderByDescending(a => a.POS).FirstOrDefault();
                                     if (f != null)
                                     {
@@ -215,7 +241,8 @@ namespace TATconexionSAP.Services
                                         f.FECHAM = DateTime.Now;
                                         ProcesaFlujo p = new ProcesaFlujo();
                                         string res = p.procesa(f, "");
-
+                                        log.escribeLog("Procesa Flujo 1 -- NUM_DOC: " + parcial.NUM_DOC + " - RES: " + res);
+                                        
                                         if (res == "0" | res == "")
                                         {
                                             FLUJO f1 = db.FLUJOes.Where(a => a.NUM_DOC == parcial.NUM_DOC).OrderByDescending(a => a.POS).FirstOrDefault();
@@ -223,6 +250,7 @@ namespace TATconexionSAP.Services
                                             f.ESTATUS = "A";
                                             f.FECHAM = DateTime.Now;
                                             res = p.procesa(f, "");
+                                            log.escribeLog("Procesa Flujo 2 -- NUM_DOC: " + parcial.NUM_DOC + " - RES: " + res);
                                         }
 
                                         //if (res == "0" | res == "")
@@ -244,6 +272,7 @@ namespace TATconexionSAP.Services
             catch (Exception varEx)
             {
                 var ex = varEx.ToString();
+                log.escribeLog("Error LOG -- " + varEx.ToString());
                 throw new Exception(ex);
             }
         }
@@ -263,6 +292,7 @@ namespace TATconexionSAP.Services
                 catch (IOException ex)
                 {
                     // Console.WriteLine(ex); // Write error
+                    log.escribeLog("Error LOG -- " + ex.Message.ToString());
                     throw new Exception(ex.Message);
                 }
             }
@@ -281,6 +311,7 @@ namespace TATconexionSAP.Services
             catch (IOException ex)
             {
                 // Console.WriteLine(ex); // Write error
+                log.escribeLog("Error LOG -- " + ex.Message.ToString());
                 throw new Exception(ex.Message);
             }
         }

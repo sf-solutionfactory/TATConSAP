@@ -41,3 +41,5 @@ F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlSer
 F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.xml
 F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
 F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CopyComplete
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojAssemblyReference.cache
