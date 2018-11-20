@@ -163,6 +163,7 @@ namespace TATconexionSAP.Services
                     {
                         //Hacemos el update en BD
                         dA.DOCUMENTO_SAP = lstd[i].Num_doc_SAP.ToString();
+                        if (dA.ESTATUS_WF == "P") dA.ESTATUS_WF = "A";
                         db.Entry(dA).State = EntityState.Modified;
                         x = x + db.SaveChanges();
                         //Agregamos en la tabla los valores
@@ -187,6 +188,7 @@ namespace TATconexionSAP.Services
                         }
                         catch
                         {
+                            if (dA.ESTATUS_WF == "P") dA.ESTATUS_WF = "A";
                             DOCUMENTOSAP ds1 = db.DOCUMENTOSAPs.Find(ds.NUM_DOC);
                             ds1.BUKRS = lstd[i].Sociedad;
                             ds1.EJERCICIO = lstd[i].Año;
