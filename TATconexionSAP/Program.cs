@@ -17,6 +17,8 @@ namespace TATconexionSAP
         static void Main(string[] args)
         {
             Modelos m = new Modelos();
+
+
             List<string> err = m.leerArchivos();
             if (err.Count > 1)
             {

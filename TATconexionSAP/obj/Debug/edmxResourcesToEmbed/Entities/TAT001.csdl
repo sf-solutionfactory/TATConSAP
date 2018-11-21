@@ -95,6 +95,7 @@
     <Property Name="BASE_UNIT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
     <Property Name="MATERIALGP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="TAXCODEGP" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="ASIGNACIONTXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DELEGAR">
     <Key>
@@ -261,6 +262,8 @@
     <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
     <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="EXCEDE_PRES" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CUENTACL" Type="Decimal" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
     <Key>
@@ -301,6 +304,7 @@
     <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTOSAP" ToRole="DOCUMENTO" />
     <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="FECHAC" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>
@@ -329,6 +333,7 @@
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
     <NavigationProperty Name="USUARIO1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="FLUJO" ToRole="USUARIO" />
     <NavigationProperty Name="WORKFP" Relationship="Self.FK_FLUJO_WORKFP" FromRole="FLUJO" ToRole="WORKFP" />
+    <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TAX_LAND">
     <Key>

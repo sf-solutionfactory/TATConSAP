@@ -98,6 +98,8 @@ namespace TATconexionSAP.Entities
         public Nullable<decimal> OBJQ_PORC { get; set; }
         public Nullable<decimal> CUENTAP { get; set; }
         public Nullable<decimal> CUENTAPL { get; set; }
+        public string EXCEDE_PRES { get; set; }
+        public Nullable<decimal> CUENTACL { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

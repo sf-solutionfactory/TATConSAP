@@ -98,6 +98,7 @@ namespace TATconexionSAP.Services
                                             d.kunnr = val[8];
                                             d.desc = val[9];
                                             d.importe = decimal.Parse(val[10]);
+                                            d.fechac = decimal.Parse(val[11]);
                                         }
                                         catch { }
                                     }
@@ -198,6 +199,10 @@ namespace TATconexionSAP.Services
                             ds.KUNNR = lstd[i].kunnr;
                             ds.DESCR = lstd[i].desc;
                             ds.IMPORTE = lstd[i].importe;
+                            if(lstd[i].fechac.ToString().Length == 8)
+                            {
+                                ds.FECHAC = new DateTime(int.Parse(lstd[i].fechac.ToString().Substring(0, 4)), int.Parse(lstd[i].fechac.ToString().Substring(4, 2)), int.Parse(lstd[i].fechac.ToString().Substring(6, 2)));
+                            }
                             db.Entry(ds1).State = EntityState.Modified;
 
                             db.SaveChanges();

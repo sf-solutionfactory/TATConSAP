@@ -60,6 +60,7 @@
     <EntitySetMapping Name="CONPOSAPPs">
       <EntityTypeMapping TypeName="TAT001Model.CONPOSAPP">
         <MappingFragment StoreEntitySet="CONPOSAPP">
+          <ScalarProperty Name="ASIGNACIONTXT" ColumnName="ASIGNACIONTXT" />
           <ScalarProperty Name="CONSECUTIVO" ColumnName="CONSECUTIVO" />
           <ScalarProperty Name="POSICION" ColumnName="POSICION" />
           <ScalarProperty Name="RELACION" ColumnName="RELACION" />
@@ -159,6 +160,8 @@
     <EntitySetMapping Name="DOCUMENTOes">
       <EntityTypeMapping TypeName="TAT001Model.DOCUMENTO">
         <MappingFragment StoreEntitySet="DOCUMENTO">
+          <ScalarProperty Name="CUENTACL" ColumnName="CUENTACL" />
+          <ScalarProperty Name="EXCEDE_PRES" ColumnName="EXCEDE_PRES" />
           <ScalarProperty Name="CUENTAPL" ColumnName="CUENTAPL" />
           <ScalarProperty Name="CUENTAP" ColumnName="CUENTAP" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
@@ -261,6 +264,7 @@
     <EntitySetMapping Name="DOCUMENTOSAPs">
       <EntityTypeMapping TypeName="TAT001Model.DOCUMENTOSAP">
         <MappingFragment StoreEntitySet="DOCUMENTOSAP">
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
           <ScalarProperty Name="DESCR" ColumnName="DESCR" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
@@ -281,6 +285,7 @@
     <EntitySetMapping Name="FLUJOes">
       <EntityTypeMapping TypeName="TAT001Model.FLUJO">
         <MappingFragment StoreEntitySet="FLUJO">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
           <ScalarProperty Name="WORKF_ID" ColumnName="WORKF_ID" />
           <ScalarProperty Name="WF_VERSION" ColumnName="WF_VERSION" />
           <ScalarProperty Name="WF_POS" ColumnName="WF_POS" />

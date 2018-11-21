@@ -99,6 +99,7 @@
           <Property Name="BASE_UNIT" Type="nchar" MaxLength="3" />
           <Property Name="MATERIALGP" Type="nvarchar" MaxLength="30" />
           <Property Name="TAXCODEGP" Type="nchar" MaxLength="2" />
+          <Property Name="ASIGNACIONTXT" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DELEGAR">
           <Key>
@@ -256,6 +257,8 @@
           <Property Name="OBJQ_PORC" Type="decimal" Precision="13" Scale="5" />
           <Property Name="CUENTAP" Type="numeric" Precision="10" Scale="0" />
           <Property Name="CUENTAPL" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="EXCEDE_PRES" Type="char" MaxLength="1" />
+          <Property Name="CUENTACL" Type="numeric" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="DOCUMENTOREC">
           <Key>
@@ -294,6 +297,7 @@
           <Property Name="KUNNR" Type="nchar" MaxLength="10" />
           <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
           <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
+          <Property Name="FECHAC" Type="date" />
         </EntityType>
         <EntityType Name="FLUJO">
           <Key>
@@ -318,6 +322,7 @@
           <Property Name="FECHAC" Type="datetime" />
           <Property Name="FECHAM" Type="datetime" />
           <Property Name="COMENTARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="STATUS" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TAX_LAND">
           <Key>
@@ -790,6 +795,7 @@
           <Property Name="BASE_UNIT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
           <Property Name="MATERIALGP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="TAXCODEGP" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="ASIGNACIONTXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DELEGAR">
           <Key>
@@ -956,6 +962,8 @@
           <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
           <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="EXCEDE_PRES" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CUENTACL" Type="Decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="DOCUMENTOREC">
           <Key>
@@ -996,6 +1004,7 @@
           <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTOSAP" ToRole="DOCUMENTO" />
           <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="FECHAC" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="FLUJO">
           <Key>
@@ -1024,6 +1033,7 @@
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
           <NavigationProperty Name="USUARIO1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="FLUJO" ToRole="USUARIO" />
           <NavigationProperty Name="WORKFP" Relationship="Self.FK_FLUJO_WORKFP" FromRole="FLUJO" ToRole="WORKFP" />
+          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TAX_LAND">
           <Key>
@@ -1478,6 +1488,7 @@
           <EntitySetMapping Name="CONPOSAPPs">
             <EntityTypeMapping TypeName="TAT001Model.CONPOSAPP">
               <MappingFragment StoreEntitySet="CONPOSAPP">
+                <ScalarProperty Name="ASIGNACIONTXT" ColumnName="ASIGNACIONTXT" />
                 <ScalarProperty Name="CONSECUTIVO" ColumnName="CONSECUTIVO" />
                 <ScalarProperty Name="POSICION" ColumnName="POSICION" />
                 <ScalarProperty Name="RELACION" ColumnName="RELACION" />
@@ -1577,6 +1588,8 @@
           <EntitySetMapping Name="DOCUMENTOes">
             <EntityTypeMapping TypeName="TAT001Model.DOCUMENTO">
               <MappingFragment StoreEntitySet="DOCUMENTO">
+                <ScalarProperty Name="CUENTACL" ColumnName="CUENTACL" />
+                <ScalarProperty Name="EXCEDE_PRES" ColumnName="EXCEDE_PRES" />
                 <ScalarProperty Name="CUENTAPL" ColumnName="CUENTAPL" />
                 <ScalarProperty Name="CUENTAP" ColumnName="CUENTAP" />
                 <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
@@ -1679,6 +1692,7 @@
           <EntitySetMapping Name="DOCUMENTOSAPs">
             <EntityTypeMapping TypeName="TAT001Model.DOCUMENTOSAP">
               <MappingFragment StoreEntitySet="DOCUMENTOSAP">
+                <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
                 <ScalarProperty Name="DESCR" ColumnName="DESCR" />
                 <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
                 <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
@@ -1699,6 +1713,7 @@
           <EntitySetMapping Name="FLUJOes">
             <EntityTypeMapping TypeName="TAT001Model.FLUJO">
               <MappingFragment StoreEntitySet="FLUJO">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="WORKF_ID" ColumnName="WORKF_ID" />
                 <ScalarProperty Name="WF_VERSION" ColumnName="WF_VERSION" />
                 <ScalarProperty Name="WF_POS" ColumnName="WF_POS" />

@@ -19,6 +19,7 @@ namespace TATconexionSAP.Services
         public string kunnr { get; set; }
         public string desc { get; set; }
         public decimal importe { get; set; }
+        public decimal fechac { get; set; }
         public int pos { get; set; }
         public string file { get; set; }
         public bool last { get; set; }

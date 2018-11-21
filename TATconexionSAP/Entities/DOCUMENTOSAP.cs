@@ -28,6 +28,7 @@ namespace TATconexionSAP.Entities
         public string KUNNR { get; set; }
         public Nullable<decimal> IMPORTE { get; set; }
         public string DESCR { get; set; }
+        public Nullable<System.DateTime> FECHAC { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
     }

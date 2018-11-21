@@ -94,6 +94,7 @@
     <Property Name="BASE_UNIT" Type="nchar" MaxLength="3" />
     <Property Name="MATERIALGP" Type="nvarchar" MaxLength="30" />
     <Property Name="TAXCODEGP" Type="nchar" MaxLength="2" />
+    <Property Name="ASIGNACIONTXT" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="DELEGAR">
     <Key>
@@ -251,6 +252,8 @@
     <Property Name="OBJQ_PORC" Type="decimal" Precision="13" Scale="5" />
     <Property Name="CUENTAP" Type="numeric" Precision="10" Scale="0" />
     <Property Name="CUENTAPL" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="EXCEDE_PRES" Type="char" MaxLength="1" />
+    <Property Name="CUENTACL" Type="numeric" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
     <Key>
@@ -289,6 +292,7 @@
     <Property Name="KUNNR" Type="nchar" MaxLength="10" />
     <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
     <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
+    <Property Name="FECHAC" Type="date" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>
@@ -313,6 +317,7 @@
     <Property Name="FECHAC" Type="datetime" />
     <Property Name="FECHAM" Type="datetime" />
     <Property Name="COMENTARIO" Type="nvarchar" MaxLength="255" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="TAX_LAND">
     <Key>
