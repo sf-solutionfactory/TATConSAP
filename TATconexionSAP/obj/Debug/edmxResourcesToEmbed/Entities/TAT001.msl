@@ -390,5 +390,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TSOLs">
+      <EntityTypeMapping TypeName="TAT001Model.TSOL">
+        <MappingFragment StoreEntitySet="TSOL">
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="REVERSO" ColumnName="REVERSO" />
+          <ScalarProperty Name="CARTA" ColumnName="CARTA" />
+          <ScalarProperty Name="NEGO" ColumnName="NEGO" />
+          <ScalarProperty Name="TRECU" ColumnName="TRECU" />
+          <ScalarProperty Name="TSOLC" ColumnName="TSOLC" />
+          <ScalarProperty Name="TSOLM" ColumnName="TSOLM" />
+          <ScalarProperty Name="ADICIONA" ColumnName="ADICIONA" />
+          <ScalarProperty Name="PADRE" ColumnName="PADRE" />
+          <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="RANGO_ID" ColumnName="RANGO_ID" />
+          <ScalarProperty Name="TSOLR" ColumnName="TSOLR" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

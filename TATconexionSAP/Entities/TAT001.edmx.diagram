@@ -40,6 +40,9 @@
         <AssociationConnector Association="TAT001Model.FK_WORKV_WORKFH" ManuallyRouted="false" />
         <AssociationConnector Association="TAT001Model.FK_WORKFP_WORKFV" ManuallyRouted="false" />
         <AssociationConnector Association="TAT001Model.FK_WORKFT_WORKFV" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TAT001Model.TSOL" Width="1.5" PointX="10.375" PointY="4" />
+        <AssociationConnector Association="TAT001Model.FK_DOCUMENTO_TSOL" />
+        <AssociationConnector Association="TAT001Model.FK_TSOL_TSOL" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

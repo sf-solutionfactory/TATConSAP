@@ -321,7 +321,7 @@
           <Property Name="ESTATUS" Type="nchar" MaxLength="1" />
           <Property Name="FECHAC" Type="datetime" />
           <Property Name="FECHAM" Type="datetime" />
-          <Property Name="COMENTARIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="COMENTARIO" Type="nvarchar(max)" />
           <Property Name="STATUS" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TAX_LAND">
@@ -331,6 +331,26 @@
           </Key>
           <Property Name="SOCIEDAD_ID" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="PAIS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TSOL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
+          <Property Name="TSOLR" Type="nvarchar" MaxLength="10" />
+          <Property Name="RANGO_ID" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="FACTURA" Type="bit" Nullable="false" />
+          <Property Name="PADRE" Type="bit" Nullable="false" />
+          <Property Name="ADICIONA" Type="bit" Nullable="false" />
+          <Property Name="TSOLM" Type="nvarchar" MaxLength="10" />
+          <Property Name="TSOLC" Type="nvarchar" MaxLength="10" />
+          <Property Name="TRECU" Type="nchar" MaxLength="1" />
+          <Property Name="NEGO" Type="bit" Nullable="false" />
+          <Property Name="CARTA" Type="bit" Nullable="false" />
+          <Property Name="REVERSO" Type="bit" Nullable="false" />
           <Property Name="ACTIVO" Type="bit" />
         </EntityType>
         <EntityType Name="USUARIO">
@@ -471,6 +491,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DOCUMENTO_TSOL">
+          <End Role="TSOL" Type="Self.TSOL" Multiplicity="0..1" />
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSOL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DOCUMENTO">
+              <PropertyRef Name="TSOL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DOCUMENTO_USUARIO">
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
           <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
@@ -559,6 +591,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TSOL_TSOL">
+          <End Role="TSOL" Type="Self.TSOL" Multiplicity="0..1" />
+          <End Role="TSOL1" Type="Self.TSOL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSOL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TSOL1">
+              <PropertyRef Name="TSOLR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WORKFP_ACCION">
           <End Role="ACCION" Type="Self.ACCION" Multiplicity="0..1" />
           <End Role="WORKFP" Type="Self.WORKFP" Multiplicity="*" />
@@ -626,6 +670,7 @@
           <EntitySet Name="DOCUMENTOSAP" EntityType="Self.DOCUMENTOSAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FLUJO" EntityType="Self.FLUJO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAX_LAND" EntityType="Self.TAX_LAND" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TSOL" EntityType="Self.TSOL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WORKFH" EntityType="Self.WORKFH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WORKFP" EntityType="Self.WORKFP" Schema="dbo" store:Type="Tables" />
@@ -650,6 +695,10 @@
           <AssociationSet Name="FK_DET_TAXEO_USUARIO" Association="Self.FK_DET_TAXEO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="DET_TAXEO" EntitySet="DET_TAXEO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENTO_TSOL" Association="Self.FK_DOCUMENTO_TSOL">
+            <End Role="TSOL" EntitySet="TSOL" />
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
           </AssociationSet>
           <AssociationSet Name="FK_DOCUMENTO_USUARIO" Association="Self.FK_DOCUMENTO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -678,6 +727,10 @@
           <AssociationSet Name="FK_FLUJO_WORKFP" Association="Self.FK_FLUJO_WORKFP">
             <End Role="WORKFP" EntitySet="WORKFP" />
             <End Role="FLUJO" EntitySet="FLUJO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSOL_TSOL" Association="Self.FK_TSOL_TSOL">
+            <End Role="TSOL" EntitySet="TSOL" />
+            <End Role="TSOL1" EntitySet="TSOL" />
           </AssociationSet>
           <AssociationSet Name="FK_WORKFP_ACCION" Association="Self.FK_WORKFP_ACCION">
             <End Role="ACCION" EntitySet="ACCION" />
@@ -964,6 +1017,7 @@
           <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="EXCEDE_PRES" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CUENTACL" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="TSOL" Relationship="TAT001Model.FK_DOCUMENTO_TSOL" FromRole="DOCUMENTO" ToRole="TSOL" />
         </EntityType>
         <EntityType Name="DOCUMENTOREC">
           <Key>
@@ -1028,7 +1082,7 @@
           <Property Name="ESTATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="FECHAC" Type="DateTime" Precision="3" />
           <Property Name="FECHAM" Type="DateTime" Precision="3" />
-          <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="COMENTARIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="FLUJO" ToRole="DOCUMENTO" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
           <NavigationProperty Name="USUARIO1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="FLUJO" ToRole="USUARIO" />
@@ -1422,7 +1476,63 @@
             <End Role="WORKFV" EntitySet="WORKFVs" />
             <End Role="WORKFT" EntitySet="WORKFTs" />
           </AssociationSet>
+          <EntitySet Name="TSOLs" EntityType="TAT001Model.TSOL" />
+          <AssociationSet Name="FK_DOCUMENTO_TSOL" Association="TAT001Model.FK_DOCUMENTO_TSOL">
+            <End Role="TSOL" EntitySet="TSOLs" />
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSOL_TSOL" Association="TAT001Model.FK_TSOL_TSOL">
+            <End Role="TSOL" EntitySet="TSOLs" />
+            <End Role="TSOL1" EntitySet="TSOLs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TSOL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="TSOLR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RANGO_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="ESTATUS" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="FACTURA" Type="Boolean" Nullable="false" />
+          <Property Name="PADRE" Type="Boolean" Nullable="false" />
+          <Property Name="ADICIONA" Type="Boolean" Nullable="false" />
+          <Property Name="TSOLM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TSOLC" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TRECU" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="NEGO" Type="Boolean" Nullable="false" />
+          <Property Name="CARTA" Type="Boolean" Nullable="false" />
+          <Property Name="REVERSO" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" />
+          <NavigationProperty Name="DOCUMENTOes" Relationship="TAT001Model.FK_DOCUMENTO_TSOL" FromRole="TSOL" ToRole="DOCUMENTO" />
+          <NavigationProperty Name="TSOL1" Relationship="TAT001Model.FK_TSOL_TSOL" FromRole="TSOL" ToRole="TSOL1" />
+          <NavigationProperty Name="TSOL2" Relationship="TAT001Model.FK_TSOL_TSOL" FromRole="TSOL1" ToRole="TSOL" />
+        </EntityType>
+        <Association Name="FK_DOCUMENTO_TSOL">
+          <End Type="TAT001Model.TSOL" Role="TSOL" Multiplicity="0..1" />
+          <End Type="TAT001Model.DOCUMENTO" Role="DOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSOL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DOCUMENTO">
+              <PropertyRef Name="TSOL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSOL_TSOL">
+          <End Type="TAT001Model.TSOL" Role="TSOL" Multiplicity="0..1" />
+          <End Type="TAT001Model.TSOL" Role="TSOL1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSOL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TSOL1">
+              <PropertyRef Name="TSOLR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1815,6 +1925,27 @@
                 <ScalarProperty Name="FECHAF" ColumnName="FECHAF" />
                 <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
                 <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TSOLs">
+            <EntityTypeMapping TypeName="TAT001Model.TSOL">
+              <MappingFragment StoreEntitySet="TSOL">
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="REVERSO" ColumnName="REVERSO" />
+                <ScalarProperty Name="CARTA" ColumnName="CARTA" />
+                <ScalarProperty Name="NEGO" ColumnName="NEGO" />
+                <ScalarProperty Name="TRECU" ColumnName="TRECU" />
+                <ScalarProperty Name="TSOLC" ColumnName="TSOLC" />
+                <ScalarProperty Name="TSOLM" ColumnName="TSOLM" />
+                <ScalarProperty Name="ADICIONA" ColumnName="ADICIONA" />
+                <ScalarProperty Name="PADRE" ColumnName="PADRE" />
+                <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
+                <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+                <ScalarProperty Name="RANGO_ID" ColumnName="RANGO_ID" />
+                <ScalarProperty Name="TSOLR" ColumnName="TSOLR" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -225,7 +225,7 @@ namespace TATconexionSAP.Services
                         if (dA.DOCUMENTO_REF > 0)
                         {
                             log.escribeLog("Es relacionado -- NUM_DOC: " + dA.NUM_DOC+" - NUM_PADRE: "+ dA.DOCUMENTO_REF);
-                            List<DOCUMENTO> rela = db.DOCUMENTOes.Where(a => a.DOCUMENTO_REF == dA.DOCUMENTO_REF).ToList();
+                            List<DOCUMENTO> rela = db.DOCUMENTOes.Where(a => a.DOCUMENTO_REF == dA.DOCUMENTO_REF & a.ESTATUS_C != "C" & a.ESTATUS_WF !="B").ToList();
                             DOCUMENTO parcial = rela.Where(a => a.TSOL_ID == "RP").FirstOrDefault();
                             if (parcial != null)
                             {
@@ -264,6 +264,32 @@ namespace TATconexionSAP.Services
                                     }
                                 }
 
+                            }
+                            else
+                            {
+
+                                //------------------PARA REVERSAS TOTALES PRUEBA 
+                                ////parcial = rela.Where(a => a.TSOL.REVERSO == true).FirstOrDefault();
+                                ////if(parcial != null)
+                                ////{
+
+                                ////    log.escribeLog("Es reverso -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
+                                ////    bool contabilizados = true;
+                                ////    foreach (DOCUMENTO rel in rela)
+                                ////    {
+                                ////            if (rel.ESTATUS_SAP != "X")
+                                ////                contabilizados = false;
+                                ////    }
+
+                                ////    if (contabilizados)
+                                ////    {
+                                ////        log.escribeLog("Estan contabilizados -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
+                                ////        DOCUMENTO docPadre = db.DOCUMENTOes.Find(dA.DOCUMENTO_REF);
+                                ////        docPadre.ESTATUS = "A";
+                                ////        db.Entry(docPadre).State = EntityState.Modified;
+                                ////        db.SaveChanges();
+                                ////    }
+                                }
                             }
                         }
                     }

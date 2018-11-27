@@ -44,5 +44,6 @@ namespace TATconexionSAP.Entities
         public virtual DbSet<WORKFP> WORKFPs { get; set; }
         public virtual DbSet<WORKFT> WORKFTs { get; set; }
         public virtual DbSet<WORKFV> WORKFVs { get; set; }
+        public virtual DbSet<TSOL> TSOLs { get; set; }
     }
 }

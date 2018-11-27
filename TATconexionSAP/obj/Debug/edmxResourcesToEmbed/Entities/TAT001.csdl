@@ -264,6 +264,7 @@
     <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="EXCEDE_PRES" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="CUENTACL" Type="Decimal" Precision="10" Scale="0" />
+    <NavigationProperty Name="TSOL" Relationship="TAT001Model.FK_DOCUMENTO_TSOL" FromRole="DOCUMENTO" ToRole="TSOL" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
     <Key>
@@ -328,7 +329,7 @@
     <Property Name="ESTATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="FECHAC" Type="DateTime" Precision="3" />
     <Property Name="FECHAM" Type="DateTime" Precision="3" />
-    <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="FLUJO" ToRole="DOCUMENTO" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
     <NavigationProperty Name="USUARIO1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="FLUJO" ToRole="USUARIO" />
@@ -722,5 +723,61 @@
       <End Role="WORKFV" EntitySet="WORKFVs" />
       <End Role="WORKFT" EntitySet="WORKFTs" />
     </AssociationSet>
+    <EntitySet Name="TSOLs" EntityType="TAT001Model.TSOL" />
+    <AssociationSet Name="FK_DOCUMENTO_TSOL" Association="TAT001Model.FK_DOCUMENTO_TSOL">
+      <End Role="TSOL" EntitySet="TSOLs" />
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TSOL_TSOL" Association="TAT001Model.FK_TSOL_TSOL">
+      <End Role="TSOL" EntitySet="TSOLs" />
+      <End Role="TSOL1" EntitySet="TSOLs" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="TSOL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="TSOLR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="RANGO_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="ESTATUS" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="FACTURA" Type="Boolean" Nullable="false" />
+    <Property Name="PADRE" Type="Boolean" Nullable="false" />
+    <Property Name="ADICIONA" Type="Boolean" Nullable="false" />
+    <Property Name="TSOLM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TSOLC" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TRECU" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="NEGO" Type="Boolean" Nullable="false" />
+    <Property Name="CARTA" Type="Boolean" Nullable="false" />
+    <Property Name="REVERSO" Type="Boolean" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" />
+    <NavigationProperty Name="DOCUMENTOes" Relationship="TAT001Model.FK_DOCUMENTO_TSOL" FromRole="TSOL" ToRole="DOCUMENTO" />
+    <NavigationProperty Name="TSOL1" Relationship="TAT001Model.FK_TSOL_TSOL" FromRole="TSOL" ToRole="TSOL1" />
+    <NavigationProperty Name="TSOL2" Relationship="TAT001Model.FK_TSOL_TSOL" FromRole="TSOL1" ToRole="TSOL" />
+  </EntityType>
+  <Association Name="FK_DOCUMENTO_TSOL">
+    <End Type="TAT001Model.TSOL" Role="TSOL" Multiplicity="0..1" />
+    <End Type="TAT001Model.DOCUMENTO" Role="DOCUMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCUMENTO">
+        <PropertyRef Name="TSOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TSOL_TSOL">
+    <End Type="TAT001Model.TSOL" Role="TSOL" Multiplicity="0..1" />
+    <End Type="TAT001Model.TSOL" Role="TSOL1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TSOL1">
+        <PropertyRef Name="TSOLR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

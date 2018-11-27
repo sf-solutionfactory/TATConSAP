@@ -109,6 +109,9 @@
     <Compile Include="Entities\TAX_LAND.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\TSOL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\USUARIO.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>

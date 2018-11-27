@@ -107,5 +107,6 @@ namespace TATconexionSAP.Entities
         public virtual DOCUMENTOSAP DOCUMENTOSAP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes { get; set; }
+        public virtual TSOL TSOL { get; set; }
     }
 }
