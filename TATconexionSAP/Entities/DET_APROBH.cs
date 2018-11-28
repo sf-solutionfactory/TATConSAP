@@ -12,22 +12,20 @@ namespace TATconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCION
+    public partial class DET_APROBH
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ACCION()
+        public DET_APROBH()
         {
-            this.WORKFPs = new HashSet<WORKFP>();
-            this.ACCIONTs = new HashSet<ACCIONT>();
+            this.DET_APROBP = new HashSet<DET_APROBP>();
         }
     
-        public int ID { get; set; }
-        public string DESCCRIPCION { get; set; }
-        public string TIPO { get; set; }
+        public string SOCIEDAD_ID { get; set; }
+        public int PUESTOC_ID { get; set; }
+        public int VERSION { get; set; }
+        public bool ACTIVO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WORKFP> WORKFPs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ACCIONT> ACCIONTs { get; set; }
+        public virtual ICollection<DET_APROBP> DET_APROBP { get; set; }
     }
 }

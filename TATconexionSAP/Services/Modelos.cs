@@ -199,7 +199,7 @@ namespace TATconexionSAP.Services
                             ds.KUNNR = lstd[i].kunnr;
                             ds.DESCR = lstd[i].desc;
                             ds.IMPORTE = lstd[i].importe;
-                            if(lstd[i].fechac.ToString().Length == 8)
+                            if (lstd[i].fechac.ToString().Length == 8)
                             {
                                 ds.FECHAC = new DateTime(int.Parse(lstd[i].fechac.ToString().Substring(0, 4)), int.Parse(lstd[i].fechac.ToString().Substring(4, 2)), int.Parse(lstd[i].fechac.ToString().Substring(6, 2)));
                             }
@@ -224,17 +224,21 @@ namespace TATconexionSAP.Services
                     {
                         if (dA.DOCUMENTO_REF > 0)
                         {
-                            log.escribeLog("Es relacionado -- NUM_DOC: " + dA.NUM_DOC+" - NUM_PADRE: "+ dA.DOCUMENTO_REF);
-                            List<DOCUMENTO> rela = db.DOCUMENTOes.Where(a => a.DOCUMENTO_REF == dA.DOCUMENTO_REF & a.ESTATUS_C != "C" & a.ESTATUS_WF !="B").ToList();
-                            DOCUMENTO parcial = rela.Where(a => a.TSOL_ID == "RP").FirstOrDefault();
-                            if (parcial != null)
+                            log.escribeLog("Es relacionado -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
+                            List<DOCUMENTO> rela = db.DOCUMENTOes.Where(a => a.DOCUMENTO_REF == dA.DOCUMENTO_REF & a.ESTATUS_C != "C" & a.ESTATUS_WF != "B").ToList();
+                            //DOCUMENTO parcial = rela.Where(a => a.TSOL_ID == "RP").FirstOrDefault();
+                            DOCUMENTO parcial = rela.FirstOrDefault(a => a.TSOL.REVERSO);
+                            if (parcial != null & !dA.TSOL.REVERSO)
                             {
+                                string pa = "";
+                                if(parcial.TSOL_ID != "RP")
+                                    pa = "C";
                                 log.escribeLog("Es parcial -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
                                 bool contabilizados = true;
                                 foreach (DOCUMENTO rel in rela)
                                 {
-                                    if (rel.TSOL_ID == "RP")
-                                        if (rel.ESTATUS_SAP == "X")
+                                    if (!rel.TSOL.REVERSO)
+                                        if (rel.ESTATUS_SAP != "X")
                                             contabilizados = false;
                                 }
 
@@ -247,16 +251,16 @@ namespace TATconexionSAP.Services
                                         f.ESTATUS = "A";
                                         f.FECHAM = DateTime.Now;
                                         ProcesaFlujo p = new ProcesaFlujo();
-                                        string res = p.procesa(f, "");
+                                        string res = p.procesa(f, pa);
                                         log.escribeLog("Procesa Flujo 1 -- NUM_DOC: " + parcial.NUM_DOC + " - RES: " + res);
-                                        
-                                        if (res == "0" | res == "")
+
+                                        if (res == "0" | res == "" | res == "1")
                                         {
                                             FLUJO f1 = db.FLUJOes.Where(a => a.NUM_DOC == parcial.NUM_DOC).OrderByDescending(a => a.POS).FirstOrDefault();
 
-                                            f.ESTATUS = "A";
-                                            f.FECHAM = DateTime.Now;
-                                            res = p.procesa(f, "");
+                                            f1.ESTATUS = "A";
+                                            f1.FECHAM = DateTime.Now;
+                                            res = p.procesa(f1, "");
                                             log.escribeLog("Procesa Flujo 2 -- NUM_DOC: " + parcial.NUM_DOC + " - RES: " + res);
                                         }
 
@@ -267,29 +271,28 @@ namespace TATconexionSAP.Services
                             }
                             else
                             {
+                                //////------------------PARA REVERSAS TOTALES PRUEBA
+                                //parcial = rela.Where(a => a.TSOL.REVERSO == true).FirstOrDefault();
+                                //if (parcial != null)
+                                //{
 
-                                //------------------PARA REVERSAS TOTALES PRUEBA 
-                                ////parcial = rela.Where(a => a.TSOL.REVERSO == true).FirstOrDefault();
-                                ////if(parcial != null)
-                                ////{
+                                //    log.escribeLog("Es reverso -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
+                                //    bool contabilizados = true;
+                                //    foreach (DOCUMENTO rel in rela)
+                                //    {
+                                //        if (rel.ESTATUS_SAP != "X")
+                                //            contabilizados = false;
+                                //    }
 
-                                ////    log.escribeLog("Es reverso -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
-                                ////    bool contabilizados = true;
-                                ////    foreach (DOCUMENTO rel in rela)
-                                ////    {
-                                ////            if (rel.ESTATUS_SAP != "X")
-                                ////                contabilizados = false;
-                                ////    }
-
-                                ////    if (contabilizados)
-                                ////    {
-                                ////        log.escribeLog("Estan contabilizados -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
-                                ////        DOCUMENTO docPadre = db.DOCUMENTOes.Find(dA.DOCUMENTO_REF);
-                                ////        docPadre.ESTATUS = "A";
-                                ////        db.Entry(docPadre).State = EntityState.Modified;
-                                ////        db.SaveChanges();
-                                ////    }
-                                }
+                                //    if (contabilizados)
+                                //    {
+                                //        log.escribeLog("Estan contabilizados -- NUM_DOC: " + dA.NUM_DOC + " - NUM_PADRE: " + dA.DOCUMENTO_REF);
+                                //        DOCUMENTO docPadre = db.DOCUMENTOes.Find(dA.DOCUMENTO_REF);
+                                //        docPadre.ESTATUS = "R";
+                                //        db.Entry(docPadre).State = EntityState.Modified;
+                                //        db.SaveChanges();
+                                //    }
+                                //}
                             }
                         }
                     }

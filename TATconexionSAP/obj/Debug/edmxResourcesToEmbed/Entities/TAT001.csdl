@@ -8,6 +8,7 @@
     <Property Name="DESCCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="TIPO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_ACCION" FromRole="ACCION" ToRole="WORKFP" />
+    <NavigationProperty Name="ACCIONTs" Relationship="TAT001Model.FK_ACCIONT_ACCION" FromRole="ACCION" ToRole="ACCIONT" />
   </EntityType>
   <EntityType Name="APPSETTING">
     <Key>
@@ -732,6 +733,18 @@
       <End Role="TSOL" EntitySet="TSOLs" />
       <End Role="TSOL1" EntitySet="TSOLs" />
     </AssociationSet>
+    <EntitySet Name="ACCIONTs" EntityType="TAT001Model.ACCIONT" />
+    <EntitySet Name="CLIENTEFs" EntityType="TAT001Model.CLIENTEF" />
+    <EntitySet Name="DET_APROBH" EntityType="TAT001Model.DET_APROBH" />
+    <EntitySet Name="DET_APROBP" EntityType="TAT001Model.DET_APROBP" />
+    <AssociationSet Name="FK_ACCIONT_ACCION" Association="TAT001Model.FK_ACCIONT_ACCION">
+      <End Role="ACCION" EntitySet="ACCIONs" />
+      <End Role="ACCIONT" EntitySet="ACCIONTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_APROBP_DET_APROBH" Association="TAT001Model.FK_DET_APROBP_DET_APROBH">
+      <End Role="DET_APROBH" EntitySet="DET_APROBH" />
+      <End Role="DET_APROBP" EntitySet="DET_APROBP" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="TSOL">
     <Key>
@@ -777,6 +790,100 @@
       </Principal>
       <Dependent Role="TSOL1">
         <PropertyRef Name="TSOLR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ACCIONT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ACCION_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="ACCION_ID" Type="Int32" Nullable="false" />
+    <Property Name="TXT050" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ACCION" Relationship="TAT001Model.FK_ACCIONT_ACCION" FromRole="ACCIONT" ToRole="ACCION" />
+  </EntityType>
+  <EntityType Name="CLIENTEF">
+    <Key>
+      <PropertyRef Name="VKORG" />
+      <PropertyRef Name="VTWEG" />
+      <PropertyRef Name="SPART" />
+      <PropertyRef Name="KUNNR" />
+      <PropertyRef Name="VERSION" />
+    </Key>
+    <Property Name="VKORG" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="VTWEG" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="SPART" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="KUNNR" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="USUARIO0_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIO1_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIO2_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIO3_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIO4_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIO5_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIO6_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="FECHAC" Type="DateTime" Precision="3" />
+    <Property Name="FECHAM" Type="DateTime" Precision="3" />
+    <Property Name="USUARIO7_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DET_APROBH">
+    <Key>
+      <PropertyRef Name="SOCIEDAD_ID" />
+      <PropertyRef Name="PUESTOC_ID" />
+      <PropertyRef Name="VERSION" />
+    </Key>
+    <Property Name="SOCIEDAD_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="PUESTOC_ID" Type="Int32" Nullable="false" />
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DET_APROBP" Relationship="TAT001Model.FK_DET_APROBP_DET_APROBH" FromRole="DET_APROBH" ToRole="DET_APROBP" />
+  </EntityType>
+  <EntityType Name="DET_APROBP">
+    <Key>
+      <PropertyRef Name="SOCIEDAD_ID" />
+      <PropertyRef Name="PUESTOC_ID" />
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="SOCIEDAD_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="PUESTOC_ID" Type="Int32" Nullable="false" />
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="POS" Type="Int32" Nullable="false" />
+    <Property Name="PUESTOA_ID" Type="Int32" />
+    <Property Name="MONTO" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="PRESUPUESTO" Type="Boolean" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="N_MONTO" Type="Int32" />
+    <Property Name="N_PRESUP" Type="Int32" />
+    <NavigationProperty Name="DET_APROBH" Relationship="TAT001Model.FK_DET_APROBP_DET_APROBH" FromRole="DET_APROBP" ToRole="DET_APROBH" />
+  </EntityType>
+  <Association Name="FK_ACCIONT_ACCION">
+    <End Type="TAT001Model.ACCION" Role="ACCION" Multiplicity="1" />
+    <End Type="TAT001Model.ACCIONT" Role="ACCIONT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ACCIONT">
+        <PropertyRef Name="ACCION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_APROBP_DET_APROBH">
+    <End Type="TAT001Model.DET_APROBH" Role="DET_APROBH" Multiplicity="1" />
+    <End Type="TAT001Model.DET_APROBP" Role="DET_APROBP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DET_APROBH">
+        <PropertyRef Name="SOCIEDAD_ID" />
+        <PropertyRef Name="PUESTOC_ID" />
+        <PropertyRef Name="VERSION" />
+      </Principal>
+      <Dependent Role="DET_APROBP">
+        <PropertyRef Name="SOCIEDAD_ID" />
+        <PropertyRef Name="PUESTOC_ID" />
+        <PropertyRef Name="VERSION" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

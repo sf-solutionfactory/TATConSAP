@@ -43,6 +43,12 @@
         <EntityTypeShape EntityType="TAT001Model.TSOL" Width="1.5" PointX="10.375" PointY="4" />
         <AssociationConnector Association="TAT001Model.FK_DOCUMENTO_TSOL" />
         <AssociationConnector Association="TAT001Model.FK_TSOL_TSOL" />
+        <EntityTypeShape EntityType="TAT001Model.ACCIONT" Width="1.5" PointX="6" PointY="27.875" />
+        <EntityTypeShape EntityType="TAT001Model.CLIENTEF" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TAT001Model.DET_APROBH" Width="1.5" PointX="8.375" PointY="11.5" />
+        <EntityTypeShape EntityType="TAT001Model.DET_APROBP" Width="1.5" PointX="10.625" PointY="11" />
+        <AssociationConnector Association="TAT001Model.FK_ACCIONT_ACCION" />
+        <AssociationConnector Association="TAT001Model.FK_DET_APROBP_DET_APROBH" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
