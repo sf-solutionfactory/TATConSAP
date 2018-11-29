@@ -21,12 +21,12 @@ namespace TATconexionSAP.Services
         #endregion
         public List<string> leerArchivos()
         {
-            APPSETTING lg = db.APPSETTINGs.Where(x => x.NOMBRE == "logPath" & x.ACTIVO == true).FirstOrDefault();
+            APPSETTING lg = db.APPSETTINGs.Where(x => x.NOMBRE == "logPath" && x.ACTIVO).FirstOrDefault();
             log.ruta = lg.VALUE + "ConexionSAP_";
             log.escribeLog("-----------------------------------------------------------------------START");
 
             List<string> errores = new List<string>();
-            APPSETTING sett = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("filePath") & x.ACTIVO).FirstOrDefault();//RSG 30.07.2018
+            APPSETTING sett = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("filePath") && x.ACTIVO).FirstOrDefault();//RSG 30.07.2018
             if (sett == null) { errores.Add("Falta configuración de PATH!"); }
             //var cadena = ConfigurationManager.AppSettings["url"];
             var cadena = sett.VALUE;
@@ -73,7 +73,7 @@ namespace TATconexionSAP.Services
                                 else
                                 {
 
-                                    if (val[1] == "Error")
+                                    if (val[1] == "Error" || val[1] == "Error - Reprocess")
                                     {
                                         d.numero_TAT = val[0];
                                         d.Mensaje = val[1];
@@ -112,7 +112,7 @@ namespace TATconexionSAP.Services
                 }
                 foreach (doc d in lstd)
                 {
-                    if (d.pos == lstd.OrderByDescending(x => x.pos).First().pos)
+                    if (d.pos == lstd.Where(x=>x.file == d.file).OrderByDescending(x => x.pos).First().pos)
                         d.last = true;
                     else
                         d.last = false;

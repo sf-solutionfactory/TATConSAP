@@ -43,3 +43,15 @@ F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlSer
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CopyComplete
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojAssemblyReference.cache
 F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe.config
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.pdb
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.dll
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.xml
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CopyComplete
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.exe
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.pdb

@@ -9,3 +9,14 @@ C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexi
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.csproj.CopyComplete
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.exe
 C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.pdb
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\TATconexionSAP.exe.config
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\TATconexionSAP.exe
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\TATconexionSAP.pdb
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFramework.dll
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFramework.xml
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.csproj.CopyComplete
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.exe
+C:\Users\mxvr1s02\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Release\TATconexionSAP.pdb
